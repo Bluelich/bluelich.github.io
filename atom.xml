@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Joe&#39;s Room</title>
+  <title>Bluelich的博客</title>
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://joehill.me/"/>
+  <link href="http://bluelich.com/"/>
   <updated>2016-05-22T16:49:57.000Z</updated>
-  <id>http://joehill.me/</id>
+  <id>http://bluelich.com/</id>
   
   <author>
-    <name>Joe</name>
+    <name>Bluelich</name>
     
   </author>
   
@@ -17,8 +17,8 @@
   
   <entry>
     <title>firstblog</title>
-    <link href="http://joehill.me/2016/05/23/firstblog/"/>
-    <id>http://joehill.me/2016/05/23/firstblog/</id>
+    <link href="http://bluelich.com/2016/05/23/firstblog/"/>
+    <id>http://bluelich.com/2016/05/23/firstblog/</id>
     <published>2016-05-22T16:49:28.000Z</published>
     <updated>2016-05-22T16:49:57.000Z</updated>
     
@@ -50,8 +50,8 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="http://joehill.me/2016/05/23/hello-world/"/>
-    <id>http://joehill.me/2016/05/23/hello-world/</id>
+    <link href="http://bluelich.com/2016/05/23/hello-world/"/>
+    <id>http://bluelich.com/2016/05/23/hello-world/</id>
     <published>2016-05-22T16:33:30.000Z</published>
     <updated>2016-05-22T16:33:56.000Z</updated>
     
