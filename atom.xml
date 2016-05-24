@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://bluelich.com/"/>
-  <updated>2016-05-24T14:52:08.000Z</updated>
+  <updated>2016-05-24T14:53:26.000Z</updated>
   <id>http://bluelich.com/</id>
   
   <author>
@@ -16,18 +16,37 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>aa</title>
-    <link href="http://bluelich.com/2016/05/24/aa/"/>
-    <id>http://bluelich.com/2016/05/24/aa/</id>
-    <published>2016-05-24T14:52:08.000Z</published>
-    <updated>2016-05-24T14:52:08.000Z</updated>
+    <title>Linus Torva</title>
+    <link href="http://bluelich.com/2016/04/30/Linus-Torva/"/>
+    <id>http://bluelich.com/2016/04/30/Linus-Torva/</id>
+    <published>2016-04-30T15:55:09.000Z</published>
+    <updated>2016-05-24T14:53:26.000Z</updated>
     
-    <content type="html"></content>
+    <content type="html">&lt;p&gt;##[转载(译)]Linux25 周年：专访 Linux 之父 &lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://spectrum.ieee.org/computing/software/linux-at-25-qa-with-linus-torvalds&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;原文(英文)&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://tech2ipo.com/10028810&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;中文&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;1991年，22岁的Linus Torvalds设计了Linux的系统内核。在Linux系统诞生25周年之际，Linux之父在采访中回忆了这四分之一个世纪以来他和Linux的故事。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-0f8c97c8cfd54a9a?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;1991 年，22 岁的 Linus Torvalds 一边在芬兰赫尔辛基大学学习计算机，一边设计了 Linux 的系统内核。之后，Linux 迅速发展为一个可以在智能手机、服务器等各种平台上运行的功能全面的开源操作系统。在 Linux 系统诞生 25 周年之际，Linux 之父 Linus Torvalds 在采访中回忆了这四分之一个世纪以来他和 Linux 的故事。&lt;/p&gt;
+&lt;p&gt;######记者：现在你比二十五年前要有更丰富的编程经验，有什么你希望自己在当年刚开发 Linux 的时候就知道的吗？&lt;br&gt;Linus Torvalds：现在想起来，我觉得自己当年真是初生牛犊不怕虎。如果当时我真的知道从头建立一个操作系统的难度，肯定是不会有勇气去做的。这种年少无知也让我从一开始就没有按照前人的老路编程编写内核。&lt;br&gt;我既不知道自己想要的系统应该怎么做，也不知道其他的操作系统是怎么完成的。所以我会认真考虑和接受其他人提出的好建议。这样的开始让 Linux 成为了开源系统。用户们不需要全盘接受任何一个版本，任何人都可以按照自己的想法改写出自己的版本来。我觉得这种开源的方式让创造出一个好系统更容易，也鼓励了很多编程爱好者人参与进来。&lt;/p&gt;
+&lt;p&gt;######记者：有没有让你现在感到后悔的 Linux 早期技术决策呢？&lt;br&gt;Linus Torvalds：糟糕的决策都是可以改的。那些因为决策错误走了弯路所浪费的时间和精力会让人很烦躁。不过到最后，往往都可以从错误中吸取经验，所以一切都是值得的。我宁可迅速决策，哪怕做错了也比纠结太久要好。&lt;br&gt;在 2001 年左右 Linux 的虚拟内存子系统出了问题时，大家关于未来的方向争论不休，而且内存配置也出了问题。但是现在回过头看，虽然过程很痛苦，但是这些问题并不能毁灭 Linux。这值得我们骄傲。&lt;/p&gt;
+&lt;p&gt;######记者：Linux 在迅速发展的过程中，让你印象比较深的转变是哪几次？&lt;br&gt;Linus Torvalds：两个转变过渡让我印象最深刻。第一次是很早在 1992 的时候，当其他热心的用户开始把他们完成的补丁发给我时，我已经独立开发了 6 个月，我还不太习惯用。所以我会仔细地检查他们想修复的是哪个问题，然后自己再写一遍。有时候跟他们写得非常像，也有时候会有大不相同。&lt;br&gt;再然后，我开始信任一些用户，直接应用他们的补丁。而不是什么都自己重写一遍。只要我有时间，还是会经常修改他们的补丁。那段时间我练就了一身迅速读补丁然后修改的功夫，感觉自己闭眼都能完成。&lt;br&gt;之后 Linux 就这样运行了很久。习惯了这样的模式，第二次改变就困难了很多。是在 2000 年前后，当时 Linux 已经有了很多商业应用，而且用户量也越来越大。大家都开始抱怨我的工作速度已经在影响 Linux 的效率。但是那时也合适的工具来管理开发资源。&lt;br&gt;所以我们引进了 BItKeeper 作为源代码的维护工具。Bitkeeper 允许真正的分布式开发，每个人都拥有自己的主副本。在当时成倍提高了内核的开发效率，并且让我意识到程序员们可以在一个分布式的开发模型中一起工作，而我不应该是唯一的同步点。&lt;br&gt;后来 2005 年我开始以分布式源控制管理的思想着手开发 Git，为了作为一种过渡方案来替代 BitKeeper。虽然让开发人员认可 Git 花了不少功夫，但是 Git 作为一个开放源码的版本控制软件获得了巨大的成功。&lt;br&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-e4cce1e0bca753ab?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;######记者：你怎么看 Linux 并没有成为个人电脑的主流操作系统呢?&lt;br&gt;Linus Torvalds：在这方面，Linux 还需要继续努力。个人电脑是用户非常私人化的。为什么个人电脑使用 Linux 系统的用户不够多呢？我觉得用户惯性是很重要的原因之一。有了电脑出厂时预置的操作系统，大多数人不会轻易重装自己电脑的操作系统。现在，比如 Chromebooks（谷歌上网，Linus 本人多次称赞）上安装 Linux 操作系统就不错，虽然功能有限。&lt;br&gt;不过，对于用户而言同样私密同样重要的智能手机方面，多谢基于 Linux 内核的 Android，Linux 应用量还比较不错。&lt;/p&gt;
+&lt;p&gt;######记者：Linux 最让你惊讶的地方是什么呢？&lt;br&gt;现在很少会惊讶的感觉了。毕竟 Linux 已经成为很多新硬件专业的设备或一些新的网络基础设施或什么的的默认开发环境。会让我惊讶的往往是人们又赋予了 Linux 一些新的应用领域，比如在我还认为 Linux 只能作为工作站或者服务器的操作系统时，又有一些厂商选择 Linux 作为冰箱或电视（比如 TiVo）的操作程序，让我吃了一惊。&lt;/p&gt;
+&lt;p&gt;######记者：你认为 Linux 目前面临的最大挑战是什么呢？&lt;br&gt;Linus Torvalds：用户经常担心 Linux 的系统内核会变得越来越复杂，从而变得难以理解，一旦有错误也难以修复。不过实际上现在 Linux 内核运转的非常好。另一个我们面临的持续挑战就是很多运载着 Linux 系统的电子设备不断更新后的适配问题。不过现在很多厂商会帮助我们进行调整，已经比之前好很多了。很多开源项目一定很嫉妒我们所拥有的资源。&lt;/p&gt;
+&lt;p&gt;######记者：最近的科技的发展方向上，你最感兴趣的是什么？&lt;br&gt;Linus Torvalds：我一直对核心硬件很感兴趣，尤其是 CPU。这是我开始独立开发操作系统的原因。我会很高兴看到新的硬件出现。当然，大多数时间是在现有的硬件改动很小，但技术的发展就应该是这样一小步一小步进行的。我会一直关注相关领域的发展。&lt;br&gt;虽然我自己没有从事相关领域的工作，但我也非常感兴趣人工智能的发展。人工智能一直被认为是即将实现，但是一直没有真的实现的东西。不过最近有迹象表明人工智能的实现指日可待，我也跟大家一样很期待。人工智能的特点在于可以学习，不再需人类编程进行控制。但是我认为这也是为什么他们永远没法代替传统的电脑编程。人类的确需要聪明的机器，但是人类也需要会乖乖听话做事的机器。&lt;/p&gt;
+&lt;p&gt;######记者：你觉得 Linux 在 50 周年的时候还会一如现在一样流行吗？&lt;br&gt;Linus Torvalds：把去预测 Linux 的未来会是什么样的问题交给评论家们吧，我更愿意做一个脚踏实地的工程师，每天尽全力专注于 Linux 的每一个小问题和小决策。&lt;/p&gt;
+&lt;p&gt;本文由 TECH2IPO / 创见 二两白 编译，译文由创见首发，转载请注明&lt;a href=&quot;http://tech2ipo.com/10028810&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;出处&lt;/a&gt;&lt;/p&gt;
+</content>
     
     <summary type="html">
     
+      &lt;p&gt;##[转载(译)]Linux25 周年：专访 Linux 之父 &lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://spectrum.ieee.org/computing/software/linux-at-25-qa-with-linus-torvalds&quot; target=&quot;
+    
     </summary>
     
+    
+      <category term="转载" scheme="http://bluelich.com/tags/%E8%BD%AC%E8%BD%BD/"/>
     
   </entry>
   
