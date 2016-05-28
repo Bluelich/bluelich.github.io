@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://bluelich.com/"/>
-  <updated>2016-05-24T14:53:26.000Z</updated>
+  <updated>2016-05-28T03:03:25.000Z</updated>
   <id>http://bluelich.com/</id>
   
   <author>
@@ -20,13 +20,13 @@
     <link href="http://bluelich.com/2016/04/30/Linus-Torva/"/>
     <id>http://bluelich.com/2016/04/30/Linus-Torva/</id>
     <published>2016-04-30T15:55:09.000Z</published>
-    <updated>2016-05-24T14:53:26.000Z</updated>
+    <updated>2016-05-28T03:03:25.000Z</updated>
     
     <content type="html">&lt;p&gt;##[转载(译)]Linux25 周年：专访 Linux 之父 &lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;http://spectrum.ieee.org/computing/software/linux-at-25-qa-with-linus-torvalds&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;原文(英文)&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://tech2ipo.com/10028810&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;中文&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;1991年，22岁的Linus Torvalds设计了Linux的系统内核。在Linux系统诞生25周年之际，Linux之父在采访中回忆了这四分之一个世纪以来他和Linux的故事。&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-0f8c97c8cfd54a9a?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;1991 年，22 岁的 Linus Torvalds 一边在芬兰赫尔辛基大学学习计算机，一边设计了 Linux 的系统内核。之后，Linux 迅速发展为一个可以在智能手机、服务器等各种平台上运行的功能全面的开源操作系统。在 Linux 系统诞生 25 周年之际，Linux 之父 Linus Torvalds 在采访中回忆了这四分之一个世纪以来他和 Linux 的故事。&lt;/p&gt;
+&lt;p&gt;1991 年，22 岁的 Linus Torvalds 一边在芬兰赫尔辛基大学学习计算机，一边设计了 Linux 的系统内核。之后，Linux 迅速发展为一个可以在智能手机、服务器等各种平台上运行的功能全面的开源操作系统。在 Linux 系统诞生 25 周年之际，Linux 之父 Linus Torvalds 在采访中回忆了这四分之一个世纪以来他和 Linux 的故事。&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;######记者：现在你比二十五年前要有更丰富的编程经验，有什么你希望自己在当年刚开发 Linux 的时候就知道的吗？&lt;br&gt;Linus Torvalds：现在想起来，我觉得自己当年真是初生牛犊不怕虎。如果当时我真的知道从头建立一个操作系统的难度，肯定是不会有勇气去做的。这种年少无知也让我从一开始就没有按照前人的老路编程编写内核。&lt;br&gt;我既不知道自己想要的系统应该怎么做，也不知道其他的操作系统是怎么完成的。所以我会认真考虑和接受其他人提出的好建议。这样的开始让 Linux 成为了开源系统。用户们不需要全盘接受任何一个版本，任何人都可以按照自己的想法改写出自己的版本来。我觉得这种开源的方式让创造出一个好系统更容易，也鼓励了很多编程爱好者人参与进来。&lt;/p&gt;
 &lt;p&gt;######记者：有没有让你现在感到后悔的 Linux 早期技术决策呢？&lt;br&gt;Linus Torvalds：糟糕的决策都是可以改的。那些因为决策错误走了弯路所浪费的时间和精力会让人很烦躁。不过到最后，往往都可以从错误中吸取经验，所以一切都是值得的。我宁可迅速决策，哪怕做错了也比纠结太久要好。&lt;br&gt;在 2001 年左右 Linux 的虚拟内存子系统出了问题时，大家关于未来的方向争论不休，而且内存配置也出了问题。但是现在回过头看，虽然过程很痛苦，但是这些问题并不能毁灭 Linux。这值得我们骄傲。&lt;/p&gt;
 &lt;p&gt;######记者：Linux 在迅速发展的过程中，让你印象比较深的转变是哪几次？&lt;br&gt;Linus Torvalds：两个转变过渡让我印象最深刻。第一次是很早在 1992 的时候，当其他热心的用户开始把他们完成的补丁发给我时，我已经独立开发了 6 个月，我还不太习惯用。所以我会仔细地检查他们想修复的是哪个问题，然后自己再写一遍。有时候跟他们写得非常像，也有时候会有大不相同。&lt;br&gt;再然后，我开始信任一些用户，直接应用他们的补丁。而不是什么都自己重写一遍。只要我有时间，还是会经常修改他们的补丁。那段时间我练就了一身迅速读补丁然后修改的功夫，感觉自己闭眼都能完成。&lt;br&gt;之后 Linux 就这样运行了很久。习惯了这样的模式，第二次改变就困难了很多。是在 2000 年前后，当时 Linux 已经有了很多商业应用，而且用户量也越来越大。大家都开始抱怨我的工作速度已经在影响 Linux 的效率。但是那时也合适的工具来管理开发资源。&lt;br&gt;所以我们引进了 BItKeeper 作为源代码的维护工具。Bitkeeper 允许真正的分布式开发，每个人都拥有自己的主副本。在当时成倍提高了内核的开发效率，并且让我意识到程序员们可以在一个分布式的开发模型中一起工作，而我不应该是唯一的同步点。&lt;br&gt;后来 2005 年我开始以分布式源控制管理的思想着手开发 Git，为了作为一种过渡方案来替代 BitKeeper。虽然让开发人员认可 Git 花了不少功夫，但是 Git 作为一个开放源码的版本控制软件获得了巨大的成功。&lt;br&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-e4cce1e0bca753ab?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
@@ -41,7 +41,10 @@
     <summary type="html">
     
       &lt;p&gt;##[转载(译)]Linux25 周年：专访 Linux 之父 &lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://spectrum.ieee.org/computing/software/linux-at-25-qa-with-linus-torvalds&quot; target=&quot;
+&lt;p&gt;&lt;a href=&quot;http://spectrum.ieee.org/computing/software/linux-at-25-qa-with-linus-torvalds&quot;&gt;原文(英文)&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://tech2ipo.com/10028810&quot;&gt;中文&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;1991年，22岁的Linus Torvalds设计了Linux的系统内核。在Linux系统诞生25周年之际，Linux之父在采访中回忆了这四分之一个世纪以来他和Linux的故事。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-0f8c97c8cfd54a9a?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;1991 年，22 岁的 Linus Torvalds 一边在芬兰赫尔辛基大学学习计算机，一边设计了 Linux 的系统内核。之后，Linux 迅速发展为一个可以在智能手机、服务器等各种平台上运行的功能全面的开源操作系统。在 Linux 系统诞生 25 周年之际，Linux 之父 Linus Torvalds 在采访中回忆了这四分之一个世纪以来他和 Linux 的故事。
     
     </summary>
     
@@ -55,7 +58,7 @@
     <link href="http://bluelich.com/2016/04/24/%E7%AE%80%E5%8D%95%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0%E4%B9%8B%E3%80%8A%E4%B8%AD%E5%9B%BD%E5%89%A9%E4%BD%99%E5%AE%9A%E7%90%86%E3%80%8B/"/>
     <id>http://bluelich.com/2016/04/24/简单算法实现之《中国剩余定理》/</id>
     <published>2016-04-24T09:37:00.000Z</published>
-    <updated>2016-05-24T13:27:57.000Z</updated>
+    <updated>2016-05-28T03:03:35.000Z</updated>
     
     <content type="html">&lt;p&gt;&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E4%B8%AD%E5%9B%BD%E5%89%A9%E4%BD%99%E5%AE%9A%E7%90%86&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;中国剩余定理&lt;/a&gt;&lt;br&gt;这个定理之前没见过，是在&lt;a href=&quot;http://www.ruanyifeng.com/blog/2013/06/rsa_algorithm_part_one.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;RSA算法原理（一）&lt;/a&gt;中提到的，想深入了解的可以去读下。&lt;/p&gt;
 &lt;h5 id=&quot;故事背景&quot;&gt;&lt;a href=&quot;#故事背景&quot; class=&quot;headerlink&quot; title=&quot;故事背景&quot;&gt;&lt;/a&gt;故事背景&lt;/h5&gt;&lt;ul&gt;
@@ -64,7 +67,7 @@
 &lt;blockquote&gt;
 &lt;p&gt;秦朝末年，楚汉相争。一次，韩信将1500名将士与楚王大将李锋交战。苦战一场，楚军不敌，败退回营，汉军也死伤四五百人，于是韩信整顿兵马也返回大本营。当行至一山坡，忽有后军来报，说有楚军骑兵追来。只见远方尘土飞扬，杀声震天。汉军本来已十分疲惫，这时队伍大哗。韩信兵马到坡顶，见来敌不足五百骑，便急速点兵迎敌。他命令士兵3人一排，结果多出2名；接着命令士兵5人一排，结果多出3名；他又命令士兵7人一排，结果又多出2名。韩信马上向将士们宣布：我军有1073名勇士，敌人不足五百，我们居高临下，以众击寡，一定能打败敌人。汉军本来就信服自己的统帅，这一来更相信韩信是“神仙下凡”、“神机妙算”。于是士气大振。一时间旌旗摇动，鼓声喧天，汉军步步进逼，楚军乱作一团。交战不久，楚军大败而逃。&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;题目就是：将军点兵，三三数余2，五五数余3，七七数余2。问兵几何？&lt;/p&gt;
+&lt;p&gt;题目就是：将军点兵，三三数余2，五五数余3，七七数余2。问兵几何？&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;孙子算经&lt;/li&gt;
 &lt;/ul&gt;
@@ -98,7 +101,14 @@
     
     <summary type="html">
     
-      &lt;p&gt;&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E4%B8%AD%E5%9B%BD%E5%89%A9%E4%BD%99%E5%AE%9A%E7%90%86&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;中国剩余定理&lt;/a&gt;&lt;
+      &lt;p&gt;&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E4%B8%AD%E5%9B%BD%E5%89%A9%E4%BD%99%E5%AE%9A%E7%90%86&quot;&gt;中国剩余定理&lt;/a&gt;&lt;br&gt;这个定理之前没见过，是在&lt;a href=&quot;http://www.ruanyifeng.com/blog/2013/06/rsa_algorithm_part_one.html&quot;&gt;RSA算法原理（一）&lt;/a&gt;中提到的，想深入了解的可以去读下。&lt;/p&gt;
+&lt;h5 id=&quot;故事背景&quot;&gt;&lt;a href=&quot;#故事背景&quot; class=&quot;headerlink&quot; title=&quot;故事背景&quot;&gt;&lt;/a&gt;故事背景&lt;/h5&gt;&lt;ul&gt;
+&lt;li&gt;韩信点兵&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;秦朝末年，楚汉相争。一次，韩信将1500名将士与楚王大将李锋交战。苦战一场，楚军不敌，败退回营，汉军也死伤四五百人，于是韩信整顿兵马也返回大本营。当行至一山坡，忽有后军来报，说有楚军骑兵追来。只见远方尘土飞扬，杀声震天。汉军本来已十分疲惫，这时队伍大哗。韩信兵马到坡顶，见来敌不足五百骑，便急速点兵迎敌。他命令士兵3人一排，结果多出2名；接着命令士兵5人一排，结果多出3名；他又命令士兵7人一排，结果又多出2名。韩信马上向将士们宣布：我军有1073名勇士，敌人不足五百，我们居高临下，以众击寡，一定能打败敌人。汉军本来就信服自己的统帅，这一来更相信韩信是“神仙下凡”、“神机妙算”。于是士气大振。一时间旌旗摇动，鼓声喧天，汉军步步进逼，楚军乱作一团。交战不久，楚军大败而逃。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;题目就是：将军点兵，三三数余2，五五数余3，七七数余2。问兵几何？
     
     </summary>
     
