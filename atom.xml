@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://bluelich.com/"/>
-  <updated>2016-05-28T03:03:25.000Z</updated>
+  <updated>2016-06-11T14:42:45.000Z</updated>
   <id>http://bluelich.com/</id>
   
   <author>
@@ -14,6 +14,169 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Mac OSX平台软件推荐</title>
+    <link href="http://bluelich.com/2016/06/11/Mac-OSX%E5%B9%B3%E5%8F%B0%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/"/>
+    <id>http://bluelich.com/2016/06/11/Mac-OSX平台软件推荐/</id>
+    <published>2016-06-11T14:35:13.000Z</published>
+    <updated>2016-06-11T14:42:45.000Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;strong&gt;非开发类&lt;/strong&gt;&lt;br&gt;1.&lt;code&gt;WeiboX&lt;/code&gt;:Mac上看微博必备&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-efb3866e61a5c6e1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;2.&lt;code&gt;1Password&lt;/code&gt;:同步账户密码,license等的神器,最好买MAS版本,可以用iCloud&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-62aa3b293ee371a7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;3.&lt;code&gt;Alfred&lt;/code&gt;:Mac上最好用的workflow工具,是个效率工具&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-3fd46ba1672259ed.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;4.&lt;code&gt;Aria2&lt;/code&gt;:Mac上百度,迅雷,115网盘下载的神器,需要配合chrome的插件使用&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-37044faa01bf4f58.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;5.&lt;code&gt;Bartender&lt;/code&gt;:最好用的StatusBar管理工具,可以选择隐藏一些不会经常去手动操作的App的icon&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-2cdd7cccd16da37c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;6.&lt;code&gt;BetterSnapTool&lt;/code&gt;:窗口管理工具,对键盘党来说,应该是最好用的了&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-b887652dfc850050.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;7.&lt;code&gt;BetterTouchTool&lt;/code&gt;:触摸板功能扩展工具&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-3a199f53d5a63da1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;8.&lt;code&gt;Bilibili&lt;/code&gt;:非官方客户端&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-b8b3daa753294667.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;9.&lt;code&gt;Boom2&lt;/code&gt;:Mac音效增强工具,对声音稍敏感些的人,用过就离不开的App,iOS上的App也已经在前段时间上架&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-ef19a1a55ba4f781.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;10.&lt;code&gt;CheatSheet&lt;/code&gt;:长按⌘,就可以显示当前App的基本上所有的快捷键&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-528baecdbf19cb55.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;11.&lt;code&gt;CleanMyMac&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-139bcb29b2e46079.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;12.&lt;code&gt;Commander One Pro&lt;/code&gt;:目前Mac上可以完全代替Finder的唯一工具,功能强大&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-b58573ae474234f7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;13.&lt;code&gt;Downie&lt;/code&gt;:粘贴上一个视频网站的链接,就可以自动解析出视频地址,并下载的App,支持Youtube,Youku等大部分网站&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-700a4ee4eeec4dd5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;14.&lt;code&gt;Duet&lt;/code&gt;:支持把iPhone,iPad,甚至是win的屏幕作为屏幕扩展的一款软件,由Apple前工程师开发&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-f03f1bb34537a226.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;15.&lt;code&gt;欧陆词典&lt;/code&gt;:Mac上最好用的词典,内置多种词库,支持云同步&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-79e2d3a39ead5985.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;16.&lt;code&gt;Feedly&lt;/code&gt;:RSS阅读器&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-d376ff680148d6bf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;17.&lt;code&gt;Folx&lt;/code&gt;:非常强大的下载工具,通常会比迅雷等下载的快一些&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-08446ff0af86fb7d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;18.&lt;code&gt;HazeOver&lt;/code&gt;:使用后,会自动把激活窗口高亮,帮你集中注意力&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-7dd2dbee5ccbac32.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;19.&lt;code&gt;InsomniaX&lt;/code&gt;:有几个不是太常用的功能,比如可以在你合上盖子的时候不中断下载等&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-7d3b3010de85c107.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;20.&lt;code&gt;iStat Menus&lt;/code&gt;:用的最多的一般都是它的网速显示小工具&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-11b7383b380d636f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-3a37a9803ca7e3da.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;21.&lt;code&gt;Magnet&lt;/code&gt;:同样是窗口管理工具,但是非常便宜&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-e3dbd9aa63d696cf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;22.&lt;code&gt;Manico&lt;/code&gt;:非常方便的用键盘切换App的应用&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-b6742e2289a53791.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;23.&lt;code&gt;Mark Man&lt;/code&gt;:通常是设计师用来标注的软件,不过好些开发用的最多&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-bbb66c3c37a09e6b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;24.&lt;code&gt;Moom&lt;/code&gt;:可能是目前最出名的窗口管理工具,还可以&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-ef8226beb79ca4bf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;25.&lt;code&gt;Mou&lt;/code&gt;:读写Markdown的必备软件. 作者曾经说要上架1.0版本,结果1年多了,还是没消息,但是0.8.7的beta版也是蛮好用的,就是代码块支持的不太好,作者说在1.0会支持,但是明显是不可能了&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-f468d8b80a3d436b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;26.&lt;code&gt;Mounty&lt;/code&gt;:可以不用装插件,让Mac支持NTFS&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-2efb1019ad02558b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;27.&lt;code&gt;MWeb&lt;/code&gt;:用来写markdown的另外一款软件,目前除了Mou,大部分人用的应该都是它&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-67424857dddee027.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;28.&lt;code&gt;Near Lock&lt;/code&gt;:利用BLE4.0技术,自动lock/unlock 你的Mac的一个软件,软件功能目前已经非常稳定了&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-4bd26f97152a0dba.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;29.&lt;code&gt;网易云音乐&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-aecb44a0502e7c5f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;30.&lt;code&gt;OmniGraffle&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-38257be48edd5592.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;31.&lt;code&gt;Paste&lt;/code&gt;:剪贴板管理软件,颜值比较高,不过暂时不能云同步&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-6174e104ccd5949a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;32.&lt;code&gt;Pocket&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-f17fc3f5b3dcc558.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;33.&lt;code&gt;PopClip&lt;/code&gt;:一个功能强大的小工具,popup一个小工具条,然后通过它的插件来实现一些功能&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-4a85dc4fd0b9deb1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-6b4647af489bab95.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;效果&quot;&gt;&lt;/p&gt;
+&lt;p&gt;34.&lt;code&gt;PPDuck&lt;/code&gt;:图片压缩工具,自动选择最优方案,速度较快,好像都是有损压缩&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-b46274821bc7cd13.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;35.&lt;code&gt;Proxifier&lt;/code&gt;:功能跟名字一样&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-e1f3821d96a31992.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;36.&lt;code&gt;Reeder&lt;/code&gt;:Rss阅读工具,支持者比较多,我自己没用这个&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-a4f91e22d25df439.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;37.&lt;code&gt;Leaf&lt;/code&gt;:Rss阅读工具&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-ee9f9d4097de59b8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;38.&lt;code&gt;ShadowsocksX&lt;/code&gt;:Mac上使用ss的必备工具&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-fea4fd8ca4baf509.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;39.&lt;code&gt;Spotify&lt;/code&gt;:音乐软件,不过不付费的话,会有广告&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-be1cce9abc9bd3ac.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;40.&lt;code&gt;Surge&lt;/code&gt;:又是一个强大的梯子,每个月需要用iOS端的App激活一次&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-8d5e3b6b31efaae9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;41.&lt;code&gt;SwitchHosts&lt;/code&gt;:host管理工具,特别是经常需要切换host的人,非常有用&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-548aabef0b7d6e7a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;42.&lt;code&gt;The Unarchiver&lt;/code&gt;:解压缩工具,MAS上免费&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-1b52981ceba8814f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;43.&lt;code&gt;Tickeys&lt;/code&gt;:一个有趣的软件,可以自己尝试下(免费)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-54fd551f83fe5605.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;44.&lt;code&gt;Ulysses&lt;/code&gt;:在MWeb出来前是最好用的Markdown写作软件(当然,现在也是!)&lt;br&gt;不过MWeb的用户可能会更多些(因为便宜py)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-5e6a10a7c9098c47.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;45.&lt;code&gt;Yoink&lt;/code&gt;:随时随地暂存文件的工具,可以拖动任何格式的文件到它的管理区内,这样的软件比较多,但是这个比较好用些&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-0f625e4f7fbf1052.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-bc3a040f86bd6d1f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;拖动文件的时候会出现这个&quot;&gt;&lt;/p&gt;
+&lt;p&gt;46.&lt;code&gt;鼠须管:&lt;/code&gt;神级输入法,有一定的门槛,但是如果要求不高,那就和普通输入法基本一样,不需要什么配置,主题,词库之类的配置起来也非常容易&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-f6a1b2c5e4d5b645.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;开发类&lt;/strong&gt;&lt;br&gt;1.&lt;code&gt;AliasManage&lt;/code&gt;:alias管理工具,首次使用需要选择.bashsrc 或者.zshrc等终端配置文件&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-b9051486e48e4f6e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;2.&lt;code&gt;Atom&lt;/code&gt;:Github出品的一个写代码的工具,和Sublime类似,但是颜值比较高,交互也不错,插件也比较多&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-24439c1192a7eef4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;3.&lt;code&gt;Base&lt;/code&gt;:好用的数据库管理工具&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-8d6f7d0415a0ca73.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;4.&lt;code&gt;Charles&lt;/code&gt;:非常强大的网络调试工具&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-32835e6547483729.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;5.&lt;code&gt;Dash&lt;/code&gt;:开发文档管理和查看工具,支持非常多的语言,还支持google和stackoverflow&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-0eb891cabcb99e2b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;6.&lt;code&gt;dSYM&lt;/code&gt;:Crash log自动分析的好工具&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-322e6583b71d0c01.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;7.&lt;code&gt;FileZilla&lt;/code&gt;:开源的FTP工具&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-671458e31e60e127.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;8.&lt;code&gt;RegexToolBox&lt;/code&gt;:正则测试工具&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-42c7b273b7d8a4f9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;9.&lt;code&gt;WWDC&lt;/code&gt;:wwdc资源下载工具,也可以在线看&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-31290c91ff02a999.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;10.&lt;code&gt;Hopper Disassembler&lt;/code&gt;:逆向必备,比IDA容易很多&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-b39d178ad09b7379.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;11.&lt;code&gt;Hype&lt;/code&gt;:无需代码的web开发的工具&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-f4eacf0bba73607d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;12.&lt;code&gt;iTerm&lt;/code&gt;:替代系统自带终端的工具,配合zsh,非常好用&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-3f787157bf90dc4c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;13.&lt;code&gt;VSCode&lt;/code&gt;:微软出品的一个写代码的工具,插件不是很多,但是非常干净整洁&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-eccf978fde91dffa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;14.&lt;code&gt;PaintCode&lt;/code&gt;:把设计稿自动转换为代码的工具&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-863fe965ef027e6a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;15.&lt;code&gt;Paw&lt;/code&gt;:接口调试工具&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-13be9eee4deafa1e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;16.&lt;code&gt;Prepo&lt;/code&gt;:提供一个1024的png,就可以生成所有尺寸的icon,非常好用,还免费&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-f3f060ff91f5d5c0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;17.&lt;code&gt;Reveal&lt;/code&gt;:iOS开发调试工具,可以显示所有的视图层级;如果有越狱设备,还可以查看任意一个设备里安装的app的视图结构&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-154630c4ca9c7cb1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;18.&lt;code&gt;SimPholders&lt;/code&gt;:方便的沙盒定位工具,不过目前已经收费了,可以找之前的免费版本&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-7617804a6060316e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;19.&lt;code&gt;Sip&lt;/code&gt;:取色工具,比系统自带的强大,可以自动生成代码,有历史列表的支持&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-91463fe66dd676d4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;20.&lt;code&gt;Sketch&lt;/code&gt;:设计类软件,但是开发用的也不少,画一些简单的原型图什么的,非常方便&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-14dfa04ccaf85827.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;21.&lt;code&gt;SnippetsLab&lt;/code&gt;:可以保存你的代码块,支持云同步&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-55d4fb391273ee34.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;22.&lt;code&gt;Spark Inspector&lt;/code&gt;:和Reveal一样,但是可以自动刷新,非常方便,但是目前好像是不支持真机调试&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-cf102f3bd935ba64.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;23.&lt;code&gt;sqlitbrowser&lt;/code&gt;:免费的sqlite数据库管理工具&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-ffee091f3405dc39.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;24.&lt;code&gt;TextWrangler&lt;/code&gt;:又一个强大的文本编辑器,免费&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-23e31954ae960485.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;后续几篇预告:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;1.Xcode plugin&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2.Alfred workflow入门&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3.Alfred workflow 高手进阶&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4.开发类书籍推荐&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;前面的序号不是发布的先后顺序&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;非开发类&lt;/strong&gt;&lt;br&gt;1.&lt;code&gt;WeiboX&lt;/code&gt;:Mac上看微博必备&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-efb3866e61a5c6e1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;2.&lt;code&gt;1Password&lt;/code&gt;:同步账户密码,license等的神器,最好买MAS版本,可以用iCloud&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-62aa3b293ee371a7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;3.&lt;code&gt;Alfred&lt;/code&gt;:Mac上最好用的workflow工具,是个效率工具
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Linus Torva</title>
