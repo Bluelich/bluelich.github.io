@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://bluelich.com/"/>
-  <updated>2016-06-11T14:42:45.000Z</updated>
+  <updated>2016-06-12T14:45:49.000Z</updated>
   <id>http://bluelich.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://bluelich.com/2016/06/11/Mac-OSX%E5%B9%B3%E5%8F%B0%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/"/>
     <id>http://bluelich.com/2016/06/11/Mac-OSX平台软件推荐/</id>
     <published>2016-06-11T14:35:13.000Z</published>
-    <updated>2016-06-11T14:42:45.000Z</updated>
+    <updated>2016-06-12T14:45:49.000Z</updated>
     
     <content type="html">&lt;p&gt;&lt;strong&gt;非开发类&lt;/strong&gt;&lt;br&gt;1.&lt;code&gt;WeiboX&lt;/code&gt;:Mac上看微博必备&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-efb3866e61a5c6e1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
@@ -162,7 +162,9 @@
 &lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-ffee091f3405dc39.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;p&gt;24.&lt;code&gt;TextWrangler&lt;/code&gt;:又一个强大的文本编辑器,免费&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;http://upload-images.jianshu.io/upload_images/139624-23e31954ae960485.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;后续几篇预告:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;1.Xcode plugin&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2.Alfred workflow入门&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3.Alfred workflow 高手进阶&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4.开发类书籍推荐&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;前面的序号不是发布的先后顺序&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;25.&lt;code&gt;还有一些功能强大,但是用起来比较危险的软件,就不介绍了&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;###有这么几个网站可以关注下:&lt;br&gt;1.&lt;a href=&quot;https://bundlehunt.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://bundlehunt.com&lt;/a&gt;&lt;br&gt;&lt;code&gt;经常会有software-bundle 出售,一般都是$19.99,或者$21.99,老牌软件厂商喜欢参加这个活动,降价幅度很大&lt;/code&gt;&lt;br&gt;2.&lt;a href=&quot;http://free.apprcn.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;反斗限免&lt;/a&gt;&lt;br&gt;&lt;code&gt;Android, iOS, Windows, BLACKBERRY 10平台的限免软件都有, 不过一般限免都有时间限制, 可以关注他们的微信公众号和微博,比较方便&lt;/code&gt;&lt;br&gt;3.&lt;a href=&quot;https://stacksocial.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://stacksocial.com/&lt;/a&gt;&lt;br&gt;&lt;code&gt;这个网站有时候会有免费的bundle,但是如果订阅了的话,会很烦,因为它经常会给你发邮件,频率比较高....&lt;/code&gt;&lt;br&gt;4.&lt;a href=&quot;http://appshopper.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://appshopper.com/&lt;/a&gt;&lt;br&gt;&lt;code&gt;各种App限免,降价等资讯的主要来源&lt;/code&gt;&lt;br&gt;5.&lt;code&gt;凑够5个&lt;/code&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;后续几篇预告:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;1.Xcode plugin&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2.Alfred workflow入门&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3.Alfred workflow高手进阶&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4.开发类书籍推荐&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;注:前面的序号和文章发布的顺序无关&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 </content>
     
     <summary type="html">
