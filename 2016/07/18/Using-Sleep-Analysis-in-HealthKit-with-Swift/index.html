@@ -86,15 +86,30 @@
 
 
 
-<meta name="description" content="iOS开发者">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Bluelich的博客">
-<meta property="og:url" content="http://bluelich.com/index.html">
+<meta name="description" content="使用Swift实现基于HealthKit的睡眠分析功能记自己的第一次翻译
+原文:链接译者:Bluelich
+如今,睡眠分析的彻底改变已经成为一种趋势。用户比以往更加好奇，他们不仅希望知道自己的睡眠时间，比如说什么时候开始进入睡眠等，他们还想要通过获得聚合数据来了解自己的睡眠趋势。而今，硬件和手机的技术革新，给这个正在日益增长的用户群体带来了新的曙光。
+Apple提供了一个非常酷的方式，让你可以以非">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Using Sleep Analysis in HealthKit with Swift">
+<meta property="og:url" content="http://bluelich.com/2016/07/18/Using-Sleep-Analysis-in-HealthKit-with-Swift/index.html">
 <meta property="og:site_name" content="Bluelich的博客">
-<meta property="og:description" content="iOS开发者">
+<meta property="og:description" content="使用Swift实现基于HealthKit的睡眠分析功能记自己的第一次翻译
+原文:链接译者:Bluelich
+如今,睡眠分析的彻底改变已经成为一种趋势。用户比以往更加好奇，他们不仅希望知道自己的睡眠时间，比如说什么时候开始进入睡眠等，他们还想要通过获得聚合数据来了解自己的睡眠趋势。而今，硬件和手机的技术革新，给这个正在日益增长的用户群体带来了新的曙光。
+Apple提供了一个非常酷的方式，让你可以以非">
+<meta property="og:image" content="http://www.appcoda.com/wp-content/uploads/2016/05/HealthKit-allow-1024x640.png">
+<meta property="og:image" content="http://www.appcoda.com/wp-content/uploads/2016/05/Health-App-Permission.png">
+<meta property="og:image" content="http://www.appcoda.com/wp-content/uploads/2016/05/record_sleep_data-1024x525.png">
+<meta property="og:image" content="http://www.appcoda.com/wp-content/uploads/2016/06/sleep-analysis-test-1024x725.png">
+<meta property="og:updated_time" content="2016-07-18T13:04:19.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Bluelich的博客">
-<meta name="twitter:description" content="iOS开发者">
+<meta name="twitter:title" content="Using Sleep Analysis in HealthKit with Swift">
+<meta name="twitter:description" content="使用Swift实现基于HealthKit的睡眠分析功能记自己的第一次翻译
+原文:链接译者:Bluelich
+如今,睡眠分析的彻底改变已经成为一种趋势。用户比以往更加好奇，他们不仅希望知道自己的睡眠时间，比如说什么时候开始进入睡眠等，他们还想要通过获得聚合数据来了解自己的睡眠趋势。而今，硬件和手机的技术革新，给这个正在日益增长的用户群体带来了新的曙光。
+Apple提供了一个非常酷的方式，让你可以以非">
+<meta name="twitter:image" content="http://www.appcoda.com/wp-content/uploads/2016/05/HealthKit-allow-1024x640.png">
 
 
 
@@ -112,7 +127,7 @@
   };
 </script>
 
-  <title> Bluelich的博客 </title>
+  <title> Using Sleep Analysis in HealthKit with Swift | Bluelich的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -133,9 +148,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -212,9 +225,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -234,10 +247,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2016/07/18/Using-Sleep-Analysis-in-HealthKit-with-Swift/" itemprop="url">
-                  Using Sleep Analysis in HealthKit with Swift
-                </a>
+                Using Sleep Analysis in HealthKit with Swift
               
             
           </h1>
@@ -284,9 +294,7 @@
       
 
       
-        
-          
-            <h1 id="使用Swift实现基于HealthKit的睡眠分析功能"><a href="#使用Swift实现基于HealthKit的睡眠分析功能" class="headerlink" title="使用Swift实现基于HealthKit的睡眠分析功能"></a>使用Swift实现基于HealthKit的睡眠分析功能</h1><p><code>记自己的第一次翻译</code></p>
+        <h1 id="使用Swift实现基于HealthKit的睡眠分析功能"><a href="#使用Swift实现基于HealthKit的睡眠分析功能" class="headerlink" title="使用Swift实现基于HealthKit的睡眠分析功能"></a>使用Swift实现基于HealthKit的睡眠分析功能</h1><p><code>记自己的第一次翻译</code></p>
 <p>原文:<a href="http://www.appcoda.com/sleep-analysis-healthkit/" target="_blank" rel="external">链接</a><br>译者:<a href="http://weibo.com/u/1376767097" target="_blank" rel="external">Bluelich</a></p>
 <p>如今,睡眠分析的彻底改变已经成为一种趋势。用户比以往更加好奇，他们不仅希望知道自己的睡眠时间，比如说什么时候开始进入睡眠等，他们还想要通过获得聚合数据来了解自己的睡眠趋势。而今，硬件和手机的技术革新，给这个正在日益增长的用户群体带来了新的曙光。</p>
 <p>Apple提供了一个非常酷的方式，让你可以以非常安全的方式，通过内置的<code>健康</code>应用和用户的健康信息进行交互。你不仅仅可以通过使用<code>HealthKit</code>来<a href="https://www.appcoda.com/healthkit-introduction/" target="_blank" rel="external">构建一个健身App</a>，该框架还允许你对用户睡眠数据进行分析。</p>
@@ -401,16 +409,19 @@
 <p>保存虚假数据或者不正确的数据到Helath应用的App也会被拒。这意味着，你不能轻信你的App中那些计算健康数据的算法(比如在这个教程中的睡眠分析)。你应该尝试使用内置的传感器数据来读取和操作任何参数，以避免计算出错误的数据。</p>
 <p>在<a href="https://github.com/appcoda/SleepAnalysis" target="_blank" rel="external">这里</a>，你可以下载到这个教程对应的完整项目。</p>
 
-          
+      
+    </div>
+
+    <div>
+      
         
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
@@ -418,342 +429,51 @@
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/06/11/Mac-OSX平台软件推荐/" rel="next" title="Mac OSX平台软件推荐">
+                <i class="fa fa-chevron-left"></i> Mac OSX平台软件推荐
+              </a>
             
-              
-                
-                <a class="post-title-link" href="/2016/06/11/Mac-OSX平台软件推荐/" itemprop="url">
-                  Mac OSX平台软件推荐
-                </a>
-              
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
             
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-11T22:35:13+08:00" content="2016-06-11">
-              2016-06-11
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/06/11/Mac-OSX平台软件推荐/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/11/Mac-OSX平台软件推荐/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <p><strong>非开发类</strong><br>1.<code>WeiboX</code>:Mac上看微博必备</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/139624-efb3866e61a5c6e1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>2.<code>1Password</code>:同步账户密码,license等的神器,最好买MAS版本,可以用iCloud</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/139624-62aa3b293ee371a7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>3.<code>Alfred</code>:Mac上最好用的workflow工具,是个效率工具
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/06/11/Mac-OSX平台软件推荐/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
+
+    <div class="post-spread">
       
+        <div class="ds-share flat" data-thread-key="2016/07/18/Using-Sleep-Analysis-in-HealthKit-with-Swift/"
+     data-title="Using Sleep Analysis in HealthKit with Swift"
+     data-content=""
+     data-url="http://bluelich.com/2016/07/18/Using-Sleep-Analysis-in-HealthKit-with-Swift/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
 
-  
-  
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
 
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/30/Linus-Torva/" itemprop="url">
-                  Linus Torva
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-30T23:55:09+08:00" content="2016-04-30">
-              2016-04-30
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/30/Linus-Torva/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/30/Linus-Torva/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="转载-译-Linux25-周年：专访-Linux-之父"><a href="#转载-译-Linux25-周年：专访-Linux-之父" class="headerlink" title="[转载(译)]Linux25 周年：专访 Linux 之父"></a>[转载(译)]Linux25 周年：专访 Linux 之父</h2><p><a href="http://spectrum.ieee.org/computing/software/linux-at-25-qa-with-linus-torvalds">原文(英文)</a><br><a href="http://tech2ipo.com/10028810">中文</a></p>
-<p>1991年，22岁的Linus Torvalds设计了Linux的系统内核。在Linux系统诞生25周年之际，Linux之父在采访中回忆了这四分之一个世纪以来他和Linux的故事。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/139624-0f8c97c8cfd54a9a?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
-<p>1991 年，22 岁的 Linus Torvalds 一边在芬兰赫尔辛基大学学习计算机，一边设计了 Linux 的系统内核。之后，Linux 迅速发展为一个可以在智能手机、服务器等各种平台上运行的功能全面的开源操作系统。在 Linux 系统诞生 25 周年之际，Linux 之父 Linus Torvalds 在采访中回忆了这四分之一个世纪以来他和 Linux 的故事。
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/04/30/Linus-Torva/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
       
     </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/24/简单算法实现之《中国剩余定理》/" itemprop="url">
-                  简单算法实现之《中国剩余定理》
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-24T17:37:00+08:00" content="2016-04-24">
-              2016-04-24
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/24/简单算法实现之《中国剩余定理》/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/24/简单算法实现之《中国剩余定理》/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><a href="https://zh.wikipedia.org/wiki/%E4%B8%AD%E5%9B%BD%E5%89%A9%E4%BD%99%E5%AE%9A%E7%90%86">中国剩余定理</a><br>这个定理之前没见过，是在<a href="http://www.ruanyifeng.com/blog/2013/06/rsa_algorithm_part_one.html">RSA算法原理（一）</a>中提到的，想深入了解的可以去读下。</p>
-<h5 id="故事背景"><a href="#故事背景" class="headerlink" title="故事背景"></a>故事背景</h5><ul>
-<li>韩信点兵</li>
-</ul>
-<blockquote>
-<p>秦朝末年，楚汉相争。一次，韩信将1500名将士与楚王大将李锋交战。苦战一场，楚军不敌，败退回营，汉军也死伤四五百人，于是韩信整顿兵马也返回大本营。当行至一山坡，忽有后军来报，说有楚军骑兵追来。只见远方尘土飞扬，杀声震天。汉军本来已十分疲惫，这时队伍大哗。韩信兵马到坡顶，见来敌不足五百骑，便急速点兵迎敌。他命令士兵3人一排，结果多出2名；接着命令士兵5人一排，结果多出3名；他又命令士兵7人一排，结果又多出2名。韩信马上向将士们宣布：我军有1073名勇士，敌人不足五百，我们居高临下，以众击寡，一定能打败敌人。汉军本来就信服自己的统帅，这一来更相信韩信是“神仙下凡”、“神机妙算”。于是士气大振。一时间旌旗摇动，鼓声喧天，汉军步步进逼，楚军乱作一团。交战不久，楚军大败而逃。</p>
-</blockquote>
-<p>题目就是：将军点兵，三三数余2，五五数余3，七七数余2。问兵几何？
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/04/24/简单算法实现之《中国剩余定理》/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-  </section>
-
-  
+  </div>
 
 
           </div>
@@ -761,6 +481,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/07/18/Using-Sleep-Analysis-in-HealthKit-with-Swift/"
+           data-title="Using Sleep Analysis in HealthKit with Swift" data-url="http://bluelich.com/2016/07/18/Using-Sleep-Analysis-in-HealthKit-with-Swift/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -780,8 +508,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -875,6 +612,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#使用Swift实现基于HealthKit的睡眠分析功能"><span class="nav-number">1.</span> <span class="nav-text">使用Swift实现基于HealthKit的睡眠分析功能</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-number">1.1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用HealthKit框架"><span class="nav-number">1.2.</span> <span class="nav-text">使用HealthKit框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写入睡眠分析的数据"><span class="nav-number">1.3.</span> <span class="nav-text">写入睡眠分析的数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#读取睡眠分析数据"><span class="nav-number">1.4.</span> <span class="nav-text">读取睡眠分析数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#App测试"><span class="nav-number">1.5.</span> <span class="nav-text">App测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#给HealthKit-Apps的一些建议"><span class="nav-number">1.6.</span> <span class="nav-text">给HealthKit Apps的一些建议</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -971,6 +719,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
