@@ -100,7 +100,7 @@ Apple提供了一个非常酷的方式，让你可以以非常安全的方式，
 <meta property="og:image" content="http://www.appcoda.com/wp-content/uploads/2016/05/Health-App-Permission.png">
 <meta property="og:image" content="http://www.appcoda.com/wp-content/uploads/2016/05/record_sleep_data-1024x525.png">
 <meta property="og:image" content="http://www.appcoda.com/wp-content/uploads/2016/06/sleep-analysis-test-1024x725.png">
-<meta property="og:updated_time" content="2016-07-18T13:07:51.000Z">
+<meta property="og:updated_time" content="2016-07-18T13:10:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Swift实现基于HealthKit的睡眠分析功能">
 <meta name="twitter:description" content="原文:链接译者:Bluelich
@@ -294,7 +294,7 @@ Apple提供了一个非常酷的方式，让你可以以非常安全的方式，
         <p>原文:<a href="http://www.appcoda.com/sleep-analysis-healthkit/" target="_blank" rel="external">链接</a><br>译者:<a href="http://weibo.com/u/1376767097" target="_blank" rel="external">Bluelich</a></p>
 <p>如今,睡眠分析的彻底改变已经成为一种趋势。用户比以往更加好奇，他们不仅希望知道自己的睡眠时间，比如说什么时候开始进入睡眠等，他们还想要通过获得聚合数据来了解自己的睡眠趋势。而今，硬件和手机的技术革新，给这个正在日益增长的用户群体带来了新的曙光。</p>
 <p>Apple提供了一个非常酷的方式，让你可以以非常安全的方式，通过内置的<code>健康</code>应用和用户的健康信息进行交互。你不仅仅可以通过使用<code>HealthKit</code>来<a href="https://www.appcoda.com/healthkit-introduction/" target="_blank" rel="external">构建一个健身App</a>，该框架还允许你对用户睡眠数据进行分析。</p>
-<p>在这个教程里，我将会对<code>HealthKit</code>进行一个简单介绍，并演示如何构建一个简单的睡眠分析App。</p>
+<p>在这个教程里，我将会对<code>HealthKit</code>进行一个简单介绍，并演示如何构建一个简单的睡眠分析App。<a id="more"></a></p>
 <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>HealthKit框架提供了一个叫做<code>HealthKit store</code>的加密数据库结构来保存数据。你可以通过<code>HKHealthStore</code>这个类来访问这个数据库。 iPhone和Apple Watch都有他们自己的<code>HealthKit Store</code>。 健康数据会在iPhone和Apple Watch上进行同步；需要注意的是在Apple Watch上，一旦可用空间不足，旧的数据就会被删除掉；另外<code>HealthKit</code>在iPad上无法使用。</p>
 <p>如果你想创建一个基于健康数据的iOS或watchOS应用，HealthKit将会是一个非常强大的工具。<br>它被设计为一个管理各个来源的健康数据的工具，根据用户的偏好设置，将这些数据进行聚合。这些基于<code>HealthKit</code>的App拥有在<code>健康</code>App中各自数据的读写访问权限，还可以将各自的数据进行合并。这些数据不仅包括用户身体状况的基本数据，健身信息，营养状况，还包括用户的睡眠分析数据。</p>
 <p>本文的其余部分,我将向您展示如何在iOS上利用<code>HealthKit</code>框架读写睡眠分析数据。 同样的方法也适用于watchOS应用程序。 请注意,本教程编写使用Swift 2.0 和 Xcode 7。所以确保你使用的也是Xcode 7，以便继续下面的教程。</p>
