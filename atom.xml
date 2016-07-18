@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://bluelich.com/"/>
-  <updated>2016-07-18T13:04:19.000Z</updated>
+  <updated>2016-07-18T13:06:57.000Z</updated>
   <id>http://bluelich.com/</id>
   
   <author>
@@ -20,10 +20,9 @@
     <link href="http://bluelich.com/2016/07/18/Using-Sleep-Analysis-in-HealthKit-with-Swift/"/>
     <id>http://bluelich.com/2016/07/18/Using-Sleep-Analysis-in-HealthKit-with-Swift/</id>
     <published>2016-07-18T13:03:52.000Z</published>
-    <updated>2016-07-18T13:04:19.000Z</updated>
+    <updated>2016-07-18T13:06:57.000Z</updated>
     
-    <content type="html">&lt;h1 id=&quot;使用Swift实现基于HealthKit的睡眠分析功能&quot;&gt;&lt;a href=&quot;#使用Swift实现基于HealthKit的睡眠分析功能&quot; class=&quot;headerlink&quot; title=&quot;使用Swift实现基于HealthKit的睡眠分析功能&quot;&gt;&lt;/a&gt;使用Swift实现基于HealthKit的睡眠分析功能&lt;/h1&gt;&lt;p&gt;&lt;code&gt;记自己的第一次翻译&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;原文:&lt;a href=&quot;http://www.appcoda.com/sleep-analysis-healthkit/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;链接&lt;/a&gt;&lt;br&gt;译者:&lt;a href=&quot;http://weibo.com/u/1376767097&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Bluelich&lt;/a&gt;&lt;/p&gt;
+    <content type="html">&lt;h1 id=&quot;使用Swift实现基于HealthKit的睡眠分析功能&quot;&gt;&lt;a href=&quot;#使用Swift实现基于HealthKit的睡眠分析功能&quot; class=&quot;headerlink&quot; title=&quot;使用Swift实现基于HealthKit的睡眠分析功能&quot;&gt;&lt;/a&gt;使用Swift实现基于HealthKit的睡眠分析功能&lt;/h1&gt;&lt;p&gt;原文:&lt;a href=&quot;http://www.appcoda.com/sleep-analysis-healthkit/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;链接&lt;/a&gt;&lt;br&gt;译者:&lt;a href=&quot;http://weibo.com/u/1376767097&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Bluelich&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;如今,睡眠分析的彻底改变已经成为一种趋势。用户比以往更加好奇，他们不仅希望知道自己的睡眠时间，比如说什么时候开始进入睡眠等，他们还想要通过获得聚合数据来了解自己的睡眠趋势。而今，硬件和手机的技术革新，给这个正在日益增长的用户群体带来了新的曙光。&lt;/p&gt;
 &lt;p&gt;Apple提供了一个非常酷的方式，让你可以以非常安全的方式，通过内置的&lt;code&gt;健康&lt;/code&gt;应用和用户的健康信息进行交互。你不仅仅可以通过使用&lt;code&gt;HealthKit&lt;/code&gt;来&lt;a href=&quot;https://www.appcoda.com/healthkit-introduction/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;构建一个健身App&lt;/a&gt;，该框架还允许你对用户睡眠数据进行分析。&lt;/p&gt;
 &lt;p&gt;在这个教程里，我将会对&lt;code&gt;HealthKit&lt;/code&gt;进行一个简单介绍，并演示如何构建一个简单的睡眠分析App。&lt;/p&gt;
