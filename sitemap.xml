@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://bluelich.com/2016/04/30/Linus-Torva/</loc>
+    
+    <lastmod>2016-07-23T12:55:10.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://bluelich.com/2016/07/18/Using-Sleep-Analysis-in-HealthKit-with-Swift/</loc>
     
     <lastmod>2016-07-23T12:35:57.000Z</lastmod>
@@ -12,13 +19,6 @@
     <loc>http://bluelich.com/2016/06/11/Mac-OSX%E5%B9%B3%E5%8F%B0%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/</loc>
     
     <lastmod>2016-06-18T10:55:24.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://bluelich.com/2016/04/30/Linus-Torva/</loc>
-    
-    <lastmod>2016-06-18T10:55:16.000Z</lastmod>
     
   </url>
   
