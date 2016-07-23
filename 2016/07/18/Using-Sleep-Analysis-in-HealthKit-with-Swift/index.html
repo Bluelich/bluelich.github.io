@@ -100,7 +100,7 @@ Apple提供了一个非常酷的方式，让你可以以非常安全的方式，
 <meta property="og:image" content="http://www.appcoda.com/wp-content/uploads/2016/05/Health-App-Permission.png">
 <meta property="og:image" content="http://www.appcoda.com/wp-content/uploads/2016/05/record_sleep_data-1024x525.png">
 <meta property="og:image" content="http://www.appcoda.com/wp-content/uploads/2016/06/sleep-analysis-test-1024x725.png">
-<meta property="og:updated_time" content="2016-07-18T13:10:00.000Z">
+<meta property="og:updated_time" content="2016-07-23T12:35:57.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Swift实现基于HealthKit的睡眠分析功能">
 <meta name="twitter:description" content="原文:链接译者:Bluelich
@@ -301,7 +301,7 @@ Apple提供了一个非常酷的方式，让你可以以非常安全的方式，
 <p>在进行下一步之前，你可以先下载这个<a href="https://github.com/appcoda/SleepAnalysis/blob/master/SleepAnalysisStarter.zip?raw=true" target="_blank" rel="external">启动项目</a>然后解压。这是一个拥有基本功能的App。运行这个项目后，你会看到一个显示时间的计时器UI和一个开始按钮。</p>
 <h2 id="使用HealthKit框架"><a href="#使用HealthKit框架" class="headerlink" title="使用HealthKit框架"></a>使用HealthKit框架</h2><p>我们要实现的效果是，通过点击<code>Start</code>和<code>Stop</code>按钮来保存和查询用户的数据。要使用<code>HealthKit</code>，必须先让你的App获取到<code>HealthKit</code>权限，在工程中选中当前项目Target，然后选择Capabilities,打开<code>HealthKit</code>的开关<br><img src="http://www.appcoda.com/wp-content/uploads/2016/05/HealthKit-allow-1024x640.png" alt="HealthKit-allow"><br>接下来，你讲需要在<code>ViewController</code>中创建一个<code>HKHealthStore</code>的对象。<br>代码如下：<br><code>let healthStore = HKHealthStore()</code><br>后面我们就要使用这个对象<code>healthStore</code>来访问<code>HealthKit store</code>了</p>
 <p>就像前面说的那样，HealthKit给予用户权限来掌控自己的健康数据，因此你在对用户的睡眠数据进行分析之前，需要先获得用户的许可。要获得许可，需要先引入<code>HealthKit</code>framework，然后更新<code>viewDidLoad</code>里的代码。</p>
-<p>代码如下：<br>```swift<br>    override func viewDidLoad() {<br>        super.viewDidLoad()<br>        let typestoRead = Set([<br>            HKObjectType.categoryTypeForIdentifier(HKCategoryTypeIdentifierSleepAnalysis)!<br>            ])<br>        let typestoShare = Set([<br>            HKObjectType.categoryTypeForIdentifier(HKCategoryTypeIdentifierSleepAnalysis)!<br>            ])<br>        self.healthStore.requestAuthorizationToShareTypes(typestoShare, readTypes: typestoRead) { (success, error) -&gt; Void in<br>            if success == false {<br>                NSLog(“请求权限失败”)<br>            }<br>        }<br>    }<br>```</p>
+<p>代码如下：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">super</span>.viewDidLoad()</span><br><span class="line">    <span class="keyword">let</span> typestoRead = <span class="type">Set</span>([</span><br><span class="line">        <span class="type">HKObjectType</span>.categoryTypeForIdentifier(<span class="type">HKCategoryTypeIdentifierSleepAnalysis</span>)!</span><br><span class="line">        ])</span><br><span class="line">    <span class="keyword">let</span> typestoShare = <span class="type">Set</span>([</span><br><span class="line">        <span class="type">HKObjectType</span>.categoryTypeForIdentifier(<span class="type">HKCategoryTypeIdentifierSleepAnalysis</span>)!</span><br><span class="line">        ])</span><br><span class="line">    <span class="keyword">self</span>.healthStore.requestAuthorizationToShareTypes(typestoShare, readTypes: typestoRead) &#123; (success, error) -&gt; <span class="type">Void</span> <span class="keyword">in</span></span><br><span class="line">        <span class="keyword">if</span> success == <span class="literal">false</span> &#123;</span><br><span class="line">            <span class="type">NSLog</span>(<span class="string">"请求权限失败"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>这段代码将提示用户<code>Allow</code>或<code>Dont Allow</code>你的权限请求。 通过这个completion block,您可以处理成功或错误，并得到最终结果。 让用户授予App所有请求的权限并不是必要的，所以你必须优雅地处理应用程序中的错误。</p>
 <p>但对于测试的目的,你必须选择“Allow”选项给予允许应用程序访问设备的健康数据。</p>
 <p><img src="http://www.appcoda.com/wp-content/uploads/2016/05/Health-App-Permission.png" alt="Health-App-Permission"></p>
@@ -323,81 +323,14 @@ Apple提供了一个非常酷的方式，让你可以以非常安全的方式，
 <p><strong>编者注</strong>: 对于<code>HKCategorySample</code>的类型,可以查看 <a href="https://developer.apple.com/library/ios/documentation/HealthKit/Reference/HealthKit_Constants/index.html#//apple_ref/doc/uid/TP40014710" target="_blank" rel="external">HealthKit Constants Reference</a>。</p>
 <p>下面我们用Swift来实现上面的4个步骤,保存用户的睡眠数据。 请讲该代码片段放到<code>ViewController</code>类中。</p>
 <p>代码如下：</p>
-<p>```swift<br>func saveSleepAnalysis() {<br>    // alarmTime 和 endTime 都是 NSDate 对象<br>    if let sleepType = HKObjectType.categoryTypeForIdentifier(HKCategoryTypeIdentifierSleepAnalysis) {</p>
-<pre><code>    // 根据我们想要做的事情,选择相应的类型和起止时间，构造出一个新的HKCategorySample对象，我们将通过这个对象和系统的Health应用进行交互
-    let object = HKCategorySample(type:sleepType, value: HKCategoryValueSleepAnalysis.InBed.rawValue, startDate: self.alarmTime, endDate: self.endTime)
-
-    // 然后，保存下来
-    healthStore.saveObject(object, withCompletion: { (success, error) -&gt; Void in
-
-        if error != nil {
-            // 这里可以处理下error
-            return
-        }
-
-        if success {
-            print(&quot;数据已经保存到Health App中了&quot;)
-
-        } else {
-            // 处理其他异常
-        }
-
-    })
-
-    let object2 = HKCategorySample(type:sleepType, value: HKCategoryValueSleepAnalysis.Asleep.rawValue, startDate: self.alarmTime, endDate: self.endTime)
-
-    healthStore.saveObject(object2, withCompletion: { (success, error) -&gt; Void in
-        if error != nil {
-            // 这里可以处理下error
-            return
-        }
-
-        if success {
-            print(&quot;数据已经保存到Health App中了&quot;)
-        } else {
-            // 处理其他异常
-        }
-
-    })
-
-}
-</code></pre><p>}<br>```</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">saveSleepAnalysis</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="comment">// alarmTime 和 endTime 都是 NSDate 对象</span></span><br><span class="line">	<span class="keyword">if</span> <span class="keyword">let</span> sleepType = <span class="type">HKObjectType</span>.categoryTypeForIdentifier(<span class="type">HKCategoryTypeIdentifierSleepAnalysis</span>) &#123;</span><br><span class="line">	</span><br><span class="line">	    <span class="comment">// 根据我们想要做的事情,选择相应的类型和起止时间，构造出一个新的HKCategorySample对象，我们将通过这个对象和系统的Health应用进行交互</span></span><br><span class="line">	    <span class="keyword">let</span> object = <span class="type">HKCategorySample</span>(type:sleepType, value: <span class="type">HKCategoryValueSleepAnalysis</span>.<span class="type">InBed</span>.rawValue, startDate: <span class="keyword">self</span>.alarmTime, endDate: <span class="keyword">self</span>.endTime)</span><br><span class="line">	</span><br><span class="line">	    <span class="comment">// 然后，保存下来</span></span><br><span class="line">	    healthStore.saveObject(object, withCompletion: &#123; (success, error) -&gt; <span class="type">Void</span> <span class="keyword">in</span></span><br><span class="line">	</span><br><span class="line">	        <span class="keyword">if</span> error != <span class="literal">nil</span> &#123;</span><br><span class="line">	            <span class="comment">// 这里可以处理下error</span></span><br><span class="line">	            <span class="keyword">return</span></span><br><span class="line">	        &#125;</span><br><span class="line">	</span><br><span class="line">	        <span class="keyword">if</span> success &#123;</span><br><span class="line">	            <span class="built_in">print</span>(<span class="string">"数据已经保存到Health App中了"</span>)</span><br><span class="line">	</span><br><span class="line">	        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">	            <span class="comment">// 处理其他异常</span></span><br><span class="line">	        &#125;</span><br><span class="line">	</span><br><span class="line">	    &#125;)</span><br><span class="line">	</span><br><span class="line">	    <span class="keyword">let</span> object2 = <span class="type">HKCategorySample</span>(type:sleepType, value: <span class="type">HKCategoryValueSleepAnalysis</span>.<span class="type">Asleep</span>.rawValue, startDate: <span class="keyword">self</span>.alarmTime, endDate: <span class="keyword">self</span>.endTime)</span><br><span class="line">	</span><br><span class="line">	    healthStore.saveObject(object2, withCompletion: &#123; (success, error) -&gt; <span class="type">Void</span> <span class="keyword">in</span></span><br><span class="line">	        <span class="keyword">if</span> error != <span class="literal">nil</span> &#123;</span><br><span class="line">	            <span class="comment">// 这里可以处理下error</span></span><br><span class="line">	            <span class="keyword">return</span></span><br><span class="line">	        &#125;</span><br><span class="line">	</span><br><span class="line">	        <span class="keyword">if</span> success &#123;</span><br><span class="line">	            <span class="built_in">print</span>(<span class="string">"数据已经保存到Health App中了"</span>)</span><br><span class="line">	        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">	            <span class="comment">// 处理其他异常</span></span><br><span class="line">	        &#125;</span><br><span class="line">	</span><br><span class="line">	    &#125;)</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>当我们想要保存我们自己App的睡眠数据到HealthKit的时候，可以调用这个方法。</p>
 <h2 id="读取睡眠分析数据"><a href="#读取睡眠分析数据" class="headerlink" title="读取睡眠分析数据"></a>读取睡眠分析数据</h2><p>要读取睡眠分析数据,我们需要创建一个<code>HKSampleQuery</code>来进行查询。 通过指定<code>HKCategoryTypeIdentifierSleepAnalysis</code>来创建一个<code>HKObjectType</code> 的对象 。 您可能还希望使用谓词来过滤获取到的数据，你可以通过指定<code>startDate</code> 和<code>endDate</code> 来确定你要查询的时间范围。 你可能还想要创建一个sortDescriptor 来对最终结果进行排序。</p>
 <p>获取睡眠分析结果数据的代码如下：</p>
-<p>```swift<br>func retrieveSleepAnalysis() {<br>    // 首先，通过构造一个HKObjectType，来指定我们要查询的类型<br>    if let sleepType = HKObjectType.categoryTypeForIdentifier(HKCategoryTypeIdentifierSleepAnalysis) {</p>
-<pre><code>    // 使用sortDescriptor来获取到最新的数据
-    let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierEndDate, ascending: false)
-
-    // 创建一次查询，在下一步执行查询后，会回调这个构造函数的block，我们可以通过这个回调来对获取的结果进行处理
-    let query = HKSampleQuery(sampleType: sleepType, predicate: nil, limit: 30, sortDescriptors: [sortDescriptor]) { (query, tmpResult, error) -&gt; Void in
-
-        if error != nil {
-
-            // 这里可以处理下error
-            return
-
-        }
-
-        if let result = tmpResult {
-
-            // 处理数据
-            for item in result {
-                if let sample = item as? HKCategorySample {
-                    let value = (sample.value == HKCategoryValueSleepAnalysis.InBed.rawValue) ? &quot;InBed&quot; : &quot;Asleep&quot;
-                    print(&quot;Healthkit sleep: \(sample.startDate) \(sample.endDate) - value: \(value)&quot;)
-                }
-            }
-        }
-    }
-
-    // 最后执行查询
-    healthStore.executeQuery(query)
-}
-</code></pre><p>}<br>```</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">retrieveSleepAnalysis</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="comment">// 首先，通过构造一个HKObjectType，来指定我们要查询的类型</span></span><br><span class="line">	<span class="keyword">if</span> <span class="keyword">let</span> sleepType = <span class="type">HKObjectType</span>.categoryTypeForIdentifier(<span class="type">HKCategoryTypeIdentifierSleepAnalysis</span>) &#123;</span><br><span class="line">	</span><br><span class="line">	    <span class="comment">// 使用sortDescriptor来获取到最新的数据</span></span><br><span class="line">	    <span class="keyword">let</span> sortDescriptor = <span class="type">NSSortDescriptor</span>(key: <span class="type">HKSampleSortIdentifierEndDate</span>, ascending: <span class="literal">false</span>)</span><br><span class="line">	</span><br><span class="line">	    <span class="comment">// 创建一次查询，在下一步执行查询后，会回调这个构造函数的block，我们可以通过这个回调来对获取的结果进行处理</span></span><br><span class="line">	    <span class="keyword">let</span> query = <span class="type">HKSampleQuery</span>(sampleType: sleepType, predicate: <span class="literal">nil</span>, limit: <span class="number">30</span>, sortDescriptors: [sortDescriptor]) &#123; (query, tmpResult, error) -&gt; <span class="type">Void</span> <span class="keyword">in</span></span><br><span class="line">	</span><br><span class="line">	        <span class="keyword">if</span> error != <span class="literal">nil</span> &#123;</span><br><span class="line">	</span><br><span class="line">	            <span class="comment">// 这里可以处理下error</span></span><br><span class="line">	            <span class="keyword">return</span></span><br><span class="line">	</span><br><span class="line">	        &#125;</span><br><span class="line">	</span><br><span class="line">	        <span class="keyword">if</span> <span class="keyword">let</span> result = tmpResult &#123;</span><br><span class="line">	</span><br><span class="line">	            <span class="comment">// 处理数据</span></span><br><span class="line">	            <span class="keyword">for</span> item <span class="keyword">in</span> result &#123;</span><br><span class="line">	                <span class="keyword">if</span> <span class="keyword">let</span> sample = item <span class="keyword">as</span>? <span class="type">HKCategorySample</span> &#123;</span><br><span class="line">	                    <span class="keyword">let</span> value = (sample.value == <span class="type">HKCategoryValueSleepAnalysis</span>.<span class="type">InBed</span>.rawValue) ? <span class="string">"InBed"</span> : <span class="string">"Asleep"</span></span><br><span class="line">	                    <span class="built_in">print</span>(<span class="string">"Healthkit sleep: <span class="subst">\(sample.startDate)</span> <span class="subst">\(sample.endDate)</span> - value: <span class="subst">\(value)</span>"</span>)</span><br><span class="line">	                &#125;</span><br><span class="line">	            &#125;</span><br><span class="line">	        &#125;</span><br><span class="line">	    &#125;</span><br><span class="line">	</span><br><span class="line">	    <span class="comment">// 最后执行查询</span></span><br><span class="line">	    healthStore.executeQuery(query)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这段代码做的事情是：指定期望为降序排列，然后向<code>HealthKit</code>查询所有的睡眠数据。然后每个查询结果都会打印(开始时间，结束时间，睡眠状态)。在构造查询对象时，通过设置<code>limit: 30</code>来指定需要查询的条数为30条，因为前面的期望为降序排列，所以是最近的30条记录，你可以通过指定<code>predicate</code>来限定你想要获取记录的开始和结束时间。</p>
 <h2 id="App测试"><a href="#App测试" class="headerlink" title="App测试"></a>App测试</h2><p>在这个demo中，当你点击<code>Start</code>按钮的时候，我使用了NSTimer来刷新Label的显示，以表示时间的累加。当你点击<code>Start</code>和<code>Stop</code>按钮的时候，会分别创建一个<code>NSDate</code>对象来保存当前时间。当你点击<code>Stop</code>按钮的时候，会计算2个时间的时间差，然后根据这个时间，保存用户的睡眠数据，在<code>func stop(sender: AnyObject)</code>中，你可以调用<code>saveSleepAnalysis()</code> 和 <code>retrieveSleepAnalysis()</code> 方法来保存和获取用户的睡眠数据。</p>
-<p>```swift<br>@IBAction func stop(sender: AnyObject) {<br>    endTime = NSDate()<br>    saveSleepAnalysis()<br>    retrieveSleepAnalysis()<br>    timer.invalidate()<br>}<br>```</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@IBAction</span> <span class="function"><span class="keyword">func</span> <span class="title">stop</span><span class="params">(sender: AnyObject)</span></span> &#123;</span><br><span class="line">	endTime = <span class="type">NSDate</span>()</span><br><span class="line">	saveSleepAnalysis()</span><br><span class="line">	retrieveSleepAnalysis()</span><br><span class="line">	timer.invalidate()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在你的App中，你可能想要修改NSDate对象来选择相关的开始和结束时间(可能是不同的)来保存在床上和睡着了的状态下的数据。</p>
 <p>一旦你做出了更改，你就可以运行这个demo，接着启动timer。让app运行几分钟，然后点击<code>Stop</code>按钮。然后，打开<code>Health</code>应用，你会发现你的App的睡眠数据已经保存在里面了。</p>
 <p><img src="http://www.appcoda.com/wp-content/uploads/2016/06/sleep-analysis-test-1024x725.png" alt="sleep-analysis-test"></p>
