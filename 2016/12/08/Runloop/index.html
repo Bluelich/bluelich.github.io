@@ -103,7 +103,7 @@ Apple对Runloop是这么解释的：
  The NSRunLoop class declares the programmatic interface to objects that manage input sources. An NSRunLoop object proce">
 <meta property="og:image" content="http://7xt8tf.com1.z0.glb.clouddn.com/runloop_1.png/blog">
 <meta property="og:image" content="http://7xt8tf.com1.z0.glb.clouddn.com/runloop_2.png/blog">
-<meta property="og:updated_time" content="2017-03-22T06:03:09.000Z">
+<meta property="og:updated_time" content="2017-03-22T06:06:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅析Runloop">
 <meta name="twitter:description" content="有一定iOS开发经验的人可能都听说过RunLoop。RunLoop，顾名思义，就是run loop ，跑圈的意思。
@@ -405,7 +405,7 @@ Apple对Runloop是这么解释的：
 <p>详解：<br>在主线程的 <code>RunLoop</code> 里有两个预置的 Mode：<code>kCFRunLoopDefaultMode</code> 和 <code>UITrackingRunLoopMode</code>。这两个 Mode 都已经被标记为 Common 属性。DefaultMode 是 App 默认状态下所处的状态，<code>TrackingRunLoopMode</code> 是追踪滑动时的状态。当你创建一个 Timer 并加到 DefaultMode 时，Timer 会得到重复回调，但此时滑动一个滚动视图时，<code>RunLoop</code> 会将 mode 切换为 <code>TrackingRunLoopMode</code>，这时 Timer 就不会被回调，并且也不会影响到滑动操作。如果将这个 Timer 分别加入这两个 Mode，或者将 Timer 加入到顶层的 RunLoop 的 CommonMode Items 中。CommonModeItems 被 <code>RunLoop</code> 自动更新到所有具有 Common 属性的 Mode 里去。这样就解决了Timer的回调问题。</p>
 <p>还有一个<code>RunLoop</code>对象类型，叫做<code>CFRunLoopObserverRef</code>。它就是RunLoop的观察者，每一个observer都需要指定一个回调函数的指针，在当 RunLoop 的状态发生变化时，观察者就能通过回调接受到这个变化。<br><code>RunLoop</code>的状态有这么几个<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">kCFRunLoopBeforeTimers--------------------------------即将处理Timer</span><br><span class="line">kCFRunLoopBeforeSources-------------------------------即将处理Source</span><br><span class="line">kCFRunLoopBeforeWaiting-------------------------------即将进入休眠</span><br><span class="line">kCFRunLoopAfterWaiting--------------------------------刚从休眠中唤醒</span><br><span class="line">kCFRunLoopExit----------------------------------------即将退出Loop</span><br></pre></td></tr></table></figure></p>
 <p>有个很出名的cell自动计算行高的高性能三方框架就是利用这个做的优化！ 利用<code>RunLoop</code>即将进入休眠的间隙去做一些耗时的运算，可以大幅减少数据刷新的整体耗时，提高用户体验！</p>
-<p>小Tips：<br>初学iOS的时候，很多人会有疑问，被标记了<code>autorelease</code>的对象究竟在什么时候释放了？到了<code>RunLoop</code>这里就有了答案。<code>RunLoop</code>BeforeWaiting时，对<code>autorelease</code>的对象进行发送消息,将这次Loop中产生的autorelease对象释放！</p>
+<p>小Tips：<br>初学iOS的时候，很多人会有疑问，被标记了<code>autorelease</code>的对象究竟在什么时候释放了？到了<code>RunLoop</code>这里就有了答案。<code>RunLoop</code>BeforeWaiting时，对<code>autorelease</code>的对象发送消息,将这次Loop中产生的autorelease对象释放！</p>
 <p>最后提供一些资料：</p>
 <ol>
 <li><a href="http://v.youku.com/v_show/id_XODgxODkzODI0.html" target="_blank" rel="external">sunnyxx的RunLoop线下分享</a></li>
