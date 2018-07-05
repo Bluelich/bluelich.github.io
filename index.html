@@ -358,10 +358,18 @@
 
       
         
-          
-            <p>## </p>
-
-          
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p>前段时间,由于公司业务关系,开始了macOS的开发.总体来说macOS的开发是不太顺利的,主要是因为macOS的UI显示和交互处理和iOS完全不同,非常多的控件需要自定义,默认没有 back layer 等.<br>后来,因为业务处理需要用到多进程开发就简单的调研了下,多进程的开发开始比较容易的.</p>
+</blockquote>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><blockquote>
+<p>对于多进程,主要的实现方式就是xpc,xpc就是系统用底层的 <code>mach port</code> 和 <code>dispatch</code>等搞的一套高级API.通过xpc,依赖于主进程起一个新的进程,来处理任务,通过xpc的信道来传输消息.<br>使用xpc有很多优势,连接、休眠以及内存等都是系统自动处理的,我们只需要连接上xpc服务,然后按照自定义协议通信就可以了.
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/07/05/在macOS上实现多进程任务处理/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
