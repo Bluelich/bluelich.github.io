@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Bluelich的博客" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="原文:链接译者:Bluelich
+如今,睡眠分析的彻底改变已经成为一种趋势。用户比以往更加好奇，他们不仅希望知道自己的睡眠时间，比如说什么时候开始进入睡眠等，他们还想要通过获得聚合数据来了解自己的睡眠趋势。而今，硬件和手机的技术革新，给这个正在日益增长的用户群体带来了新的曙光。
+Apple提供了一个非常酷的方式，让你可以以非常安全的方式，通过内置的健康应用和用户的健康信息进行交互。你不仅仅可以通过">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Swift实现基于HealthKit的睡眠分析功能">
+<meta property="og:url" content="http://bluelich.com/2016/07/18/Using-Sleep-Analysis-in-HealthKit-with-Swift/index.html">
+<meta property="og:site_name" content="Bluelich的博客">
+<meta property="og:description" content="原文:链接译者:Bluelich
+如今,睡眠分析的彻底改变已经成为一种趋势。用户比以往更加好奇，他们不仅希望知道自己的睡眠时间，比如说什么时候开始进入睡眠等，他们还想要通过获得聚合数据来了解自己的睡眠趋势。而今，硬件和手机的技术革新，给这个正在日益增长的用户群体带来了新的曙光。
+Apple提供了一个非常酷的方式，让你可以以非常安全的方式，通过内置的健康应用和用户的健康信息进行交互。你不仅仅可以通过">
+<meta property="og:image" content="http://www.appcoda.com/wp-content/uploads/2016/05/HealthKit-allow-1024x640.png">
+<meta property="og:image" content="http://www.appcoda.com/wp-content/uploads/2016/05/Health-App-Permission.png">
+<meta property="og:image" content="http://www.appcoda.com/wp-content/uploads/2016/05/record_sleep_data-1024x525.png">
+<meta property="og:image" content="http://www.appcoda.com/wp-content/uploads/2016/06/sleep-analysis-test-1024x725.png">
+<meta property="og:updated_time" content="2016-07-23T12:35:57.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用Swift实现基于HealthKit的睡眠分析功能">
+<meta name="twitter:description" content="原文:链接译者:Bluelich
+如今,睡眠分析的彻底改变已经成为一种趋势。用户比以往更加好奇，他们不仅希望知道自己的睡眠时间，比如说什么时候开始进入睡眠等，他们还想要通过获得聚合数据来了解自己的睡眠趋势。而今，硬件和手机的技术革新，给这个正在日益增长的用户群体带来了新的曙光。
+Apple提供了一个非常酷的方式，让你可以以非常安全的方式，通过内置的健康应用和用户的健康信息进行交互。你不仅仅可以通过">
+<meta name="twitter:image" content="http://www.appcoda.com/wp-content/uploads/2016/05/HealthKit-allow-1024x640.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://bluelich.com/2016/07/18/Using-Sleep-Analysis-in-HealthKit-with-Swift/"/>
+
+
+
+
+
+  <title>使用Swift实现基于HealthKit的睡眠分析功能 | Bluelich的博客</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-78250446-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?6e13fff54d99ee837b32c9e5e8203eaa";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Bluelich的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://bluelich.com/2016/07/18/Using-Sleep-Analysis-in-HealthKit-with-Swift/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bluelich">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Bluelich的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">使用Swift实现基于HealthKit的睡眠分析功能</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-18T21:03:52+08:00">
+                2016-07-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/07/18/Using-Sleep-Analysis-in-HealthKit-with-Swift/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/18/Using-Sleep-Analysis-in-HealthKit-with-Swift/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>原文:<a href="http://www.appcoda.com/sleep-analysis-healthkit/" target="_blank" rel="external">链接</a><br>译者:<a href="http://weibo.com/u/1376767097" target="_blank" rel="external">Bluelich</a></p>
+<p>如今,睡眠分析的彻底改变已经成为一种趋势。用户比以往更加好奇，他们不仅希望知道自己的睡眠时间，比如说什么时候开始进入睡眠等，他们还想要通过获得聚合数据来了解自己的睡眠趋势。而今，硬件和手机的技术革新，给这个正在日益增长的用户群体带来了新的曙光。</p>
+<p>Apple提供了一个非常酷的方式，让你可以以非常安全的方式，通过内置的<code>健康</code>应用和用户的健康信息进行交互。你不仅仅可以通过使用<code>HealthKit</code>来<a href="https://www.appcoda.com/healthkit-introduction/" target="_blank" rel="external">构建一个健身App</a>，该框架还允许你对用户睡眠数据进行分析。</p>
+<p>在这个教程里，我将会对<code>HealthKit</code>进行一个简单介绍，并演示如何构建一个简单的睡眠分析App。<a id="more"></a></p>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>HealthKit框架提供了一个叫做<code>HealthKit store</code>的加密数据库结构来保存数据。你可以通过<code>HKHealthStore</code>这个类来访问这个数据库。 iPhone和Apple Watch都有他们自己的<code>HealthKit Store</code>。 健康数据会在iPhone和Apple Watch上进行同步；需要注意的是在Apple Watch上，一旦可用空间不足，旧的数据就会被删除掉；另外<code>HealthKit</code>在iPad上无法使用。</p>
+<p>如果你想创建一个基于健康数据的iOS或watchOS应用，HealthKit将会是一个非常强大的工具。<br>它被设计为一个管理各个来源的健康数据的工具，根据用户的偏好设置，将这些数据进行聚合。这些基于<code>HealthKit</code>的App拥有在<code>健康</code>App中各自数据的读写访问权限，还可以将各自的数据进行合并。这些数据不仅包括用户身体状况的基本数据，健身信息，营养状况，还包括用户的睡眠分析数据。</p>
+<p>本文的其余部分,我将向您展示如何在iOS上利用<code>HealthKit</code>框架读写睡眠分析数据。 同样的方法也适用于watchOS应用程序。 请注意,本教程编写使用Swift 2.0 和 Xcode 7。所以确保你使用的也是Xcode 7，以便继续下面的教程。</p>
+<p>在进行下一步之前，你可以先下载这个<a href="https://github.com/appcoda/SleepAnalysis/blob/master/SleepAnalysisStarter.zip?raw=true" target="_blank" rel="external">启动项目</a>然后解压。这是一个拥有基本功能的App。运行这个项目后，你会看到一个显示时间的计时器UI和一个开始按钮。</p>
+<h2 id="使用HealthKit框架"><a href="#使用HealthKit框架" class="headerlink" title="使用HealthKit框架"></a>使用HealthKit框架</h2><p>我们要实现的效果是，通过点击<code>Start</code>和<code>Stop</code>按钮来保存和查询用户的数据。要使用<code>HealthKit</code>，必须先让你的App获取到<code>HealthKit</code>权限，在工程中选中当前项目Target，然后选择Capabilities,打开<code>HealthKit</code>的开关<br><img src="http://www.appcoda.com/wp-content/uploads/2016/05/HealthKit-allow-1024x640.png" alt="HealthKit-allow"><br>接下来，你讲需要在<code>ViewController</code>中创建一个<code>HKHealthStore</code>的对象。<br>代码如下：<br><code>let healthStore = HKHealthStore()</code><br>后面我们就要使用这个对象<code>healthStore</code>来访问<code>HealthKit store</code>了</p>
+<p>就像前面说的那样，HealthKit给予用户权限来掌控自己的健康数据，因此你在对用户的睡眠数据进行分析之前，需要先获得用户的许可。要获得许可，需要先引入<code>HealthKit</code>framework，然后更新<code>viewDidLoad</code>里的代码。</p>
+<p>代码如下：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">super</span>.viewDidLoad()</span><br><span class="line">    <span class="keyword">let</span> typestoRead = <span class="type">Set</span>([</span><br><span class="line">        <span class="type">HKObjectType</span>.categoryTypeForIdentifier(<span class="type">HKCategoryTypeIdentifierSleepAnalysis</span>)!</span><br><span class="line">        ])</span><br><span class="line">    <span class="keyword">let</span> typestoShare = <span class="type">Set</span>([</span><br><span class="line">        <span class="type">HKObjectType</span>.categoryTypeForIdentifier(<span class="type">HKCategoryTypeIdentifierSleepAnalysis</span>)!</span><br><span class="line">        ])</span><br><span class="line">    <span class="keyword">self</span>.healthStore.requestAuthorizationToShareTypes(typestoShare, readTypes: typestoRead) &#123; (success, error) -&gt; <span class="type">Void</span> <span class="keyword">in</span></span><br><span class="line">        <span class="keyword">if</span> success == <span class="literal">false</span> &#123;</span><br><span class="line">            <span class="type">NSLog</span>(<span class="string">"请求权限失败"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这段代码将提示用户<code>Allow</code>或<code>Dont Allow</code>你的权限请求。 通过这个completion block,您可以处理成功或错误，并得到最终结果。 让用户授予App所有请求的权限并不是必要的，所以你必须优雅地处理应用程序中的错误。</p>
+<p>但对于测试的目的,你必须选择“Allow”选项给予允许应用程序访问设备的健康数据。</p>
+<p><img src="http://www.appcoda.com/wp-content/uploads/2016/05/Health-App-Permission.png" alt="Health-App-Permission"></p>
+<h2 id="写入睡眠分析的数据"><a href="#写入睡眠分析的数据" class="headerlink" title="写入睡眠分析的数据"></a>写入睡眠分析的数据</h2><p>首先,我们如何检索睡眠分析数据? 根据Apple的文档,每个睡眠分析样本只能有一个值。 <code>HealthKit</code>使用两个或更多的样本的叠加来代表用户在床上和睡眠中的状态。 通过比较这些样本的开始和结束时间,应用程序可以二次统计:</p>
+<ul>
+<li>用户进入睡眠所用的时间</li>
+<li>实际睡觉的时间对比在床上的时间的百分比</li>
+<li>用户在床上醒来的次数</li>
+<li>进入睡眠和在床上的时间之和</li>
+</ul>
+<p><img src="http://www.appcoda.com/wp-content/uploads/2016/05/record_sleep_data-1024x525.png" alt="record\_sleep\_data"></p>
+<p>简而言之,你需要遵循以下方法来吧睡眠分析数据保存到<code>HealthKit store</code>中:</p>
+<ol>
+<li>我们需要定义2个 <code>NSDate</code>  对象，分别对应起始时间和结束时间。</li>
+<li>然后用<code>HKCategoryTypeIdentifierSleepAnalysis</code>(这是一个<code>Enum</code>)创建一个 <code>HKObjectType</code>对象 .</li>
+<li>我们需要创建一个新的<code>HKCategorySample</code>的对象,因为我们需要用这个对象来记录睡眠数据。个人样本代表了用户在床上或者睡着了的时间周期。因此我们要创建2个样本，分别是在床上的样本和睡着了的样本的时间</li>
+<li>最后, 我们使用<code>HKHealthStore</code>的 <code>saveObject</code> 这个类方法，保存数据.</li>
+</ol>
+<p><strong>编者注</strong>: 对于<code>HKCategorySample</code>的类型,可以查看 <a href="https://developer.apple.com/library/ios/documentation/HealthKit/Reference/HealthKit_Constants/index.html#//apple_ref/doc/uid/TP40014710" target="_blank" rel="external">HealthKit Constants Reference</a>。</p>
+<p>下面我们用Swift来实现上面的4个步骤,保存用户的睡眠数据。 请讲该代码片段放到<code>ViewController</code>类中。</p>
+<p>代码如下：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">saveSleepAnalysis</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="comment">// alarmTime 和 endTime 都是 NSDate 对象</span></span><br><span class="line">	<span class="keyword">if</span> <span class="keyword">let</span> sleepType = <span class="type">HKObjectType</span>.categoryTypeForIdentifier(<span class="type">HKCategoryTypeIdentifierSleepAnalysis</span>) &#123;</span><br><span class="line">	</span><br><span class="line">	    <span class="comment">// 根据我们想要做的事情,选择相应的类型和起止时间，构造出一个新的HKCategorySample对象，我们将通过这个对象和系统的Health应用进行交互</span></span><br><span class="line">	    <span class="keyword">let</span> object = <span class="type">HKCategorySample</span>(type:sleepType, value: <span class="type">HKCategoryValueSleepAnalysis</span>.<span class="type">InBed</span>.rawValue, startDate: <span class="keyword">self</span>.alarmTime, endDate: <span class="keyword">self</span>.endTime)</span><br><span class="line">	</span><br><span class="line">	    <span class="comment">// 然后，保存下来</span></span><br><span class="line">	    healthStore.saveObject(object, withCompletion: &#123; (success, error) -&gt; <span class="type">Void</span> <span class="keyword">in</span></span><br><span class="line">	</span><br><span class="line">	        <span class="keyword">if</span> error != <span class="literal">nil</span> &#123;</span><br><span class="line">	            <span class="comment">// 这里可以处理下error</span></span><br><span class="line">	            <span class="keyword">return</span></span><br><span class="line">	        &#125;</span><br><span class="line">	</span><br><span class="line">	        <span class="keyword">if</span> success &#123;</span><br><span class="line">	            <span class="built_in">print</span>(<span class="string">"数据已经保存到Health App中了"</span>)</span><br><span class="line">	</span><br><span class="line">	        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">	            <span class="comment">// 处理其他异常</span></span><br><span class="line">	        &#125;</span><br><span class="line">	</span><br><span class="line">	    &#125;)</span><br><span class="line">	</span><br><span class="line">	    <span class="keyword">let</span> object2 = <span class="type">HKCategorySample</span>(type:sleepType, value: <span class="type">HKCategoryValueSleepAnalysis</span>.<span class="type">Asleep</span>.rawValue, startDate: <span class="keyword">self</span>.alarmTime, endDate: <span class="keyword">self</span>.endTime)</span><br><span class="line">	</span><br><span class="line">	    healthStore.saveObject(object2, withCompletion: &#123; (success, error) -&gt; <span class="type">Void</span> <span class="keyword">in</span></span><br><span class="line">	        <span class="keyword">if</span> error != <span class="literal">nil</span> &#123;</span><br><span class="line">	            <span class="comment">// 这里可以处理下error</span></span><br><span class="line">	            <span class="keyword">return</span></span><br><span class="line">	        &#125;</span><br><span class="line">	</span><br><span class="line">	        <span class="keyword">if</span> success &#123;</span><br><span class="line">	            <span class="built_in">print</span>(<span class="string">"数据已经保存到Health App中了"</span>)</span><br><span class="line">	        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">	            <span class="comment">// 处理其他异常</span></span><br><span class="line">	        &#125;</span><br><span class="line">	</span><br><span class="line">	    &#125;)</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当我们想要保存我们自己App的睡眠数据到HealthKit的时候，可以调用这个方法。</p>
+<h2 id="读取睡眠分析数据"><a href="#读取睡眠分析数据" class="headerlink" title="读取睡眠分析数据"></a>读取睡眠分析数据</h2><p>要读取睡眠分析数据,我们需要创建一个<code>HKSampleQuery</code>来进行查询。 通过指定<code>HKCategoryTypeIdentifierSleepAnalysis</code>来创建一个<code>HKObjectType</code> 的对象 。 您可能还希望使用谓词来过滤获取到的数据，你可以通过指定<code>startDate</code> 和<code>endDate</code> 来确定你要查询的时间范围。 你可能还想要创建一个sortDescriptor 来对最终结果进行排序。</p>
+<p>获取睡眠分析结果数据的代码如下：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">retrieveSleepAnalysis</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="comment">// 首先，通过构造一个HKObjectType，来指定我们要查询的类型</span></span><br><span class="line">	<span class="keyword">if</span> <span class="keyword">let</span> sleepType = <span class="type">HKObjectType</span>.categoryTypeForIdentifier(<span class="type">HKCategoryTypeIdentifierSleepAnalysis</span>) &#123;</span><br><span class="line">	</span><br><span class="line">	    <span class="comment">// 使用sortDescriptor来获取到最新的数据</span></span><br><span class="line">	    <span class="keyword">let</span> sortDescriptor = <span class="type">NSSortDescriptor</span>(key: <span class="type">HKSampleSortIdentifierEndDate</span>, ascending: <span class="literal">false</span>)</span><br><span class="line">	</span><br><span class="line">	    <span class="comment">// 创建一次查询，在下一步执行查询后，会回调这个构造函数的block，我们可以通过这个回调来对获取的结果进行处理</span></span><br><span class="line">	    <span class="keyword">let</span> query = <span class="type">HKSampleQuery</span>(sampleType: sleepType, predicate: <span class="literal">nil</span>, limit: <span class="number">30</span>, sortDescriptors: [sortDescriptor]) &#123; (query, tmpResult, error) -&gt; <span class="type">Void</span> <span class="keyword">in</span></span><br><span class="line">	</span><br><span class="line">	        <span class="keyword">if</span> error != <span class="literal">nil</span> &#123;</span><br><span class="line">	</span><br><span class="line">	            <span class="comment">// 这里可以处理下error</span></span><br><span class="line">	            <span class="keyword">return</span></span><br><span class="line">	</span><br><span class="line">	        &#125;</span><br><span class="line">	</span><br><span class="line">	        <span class="keyword">if</span> <span class="keyword">let</span> result = tmpResult &#123;</span><br><span class="line">	</span><br><span class="line">	            <span class="comment">// 处理数据</span></span><br><span class="line">	            <span class="keyword">for</span> item <span class="keyword">in</span> result &#123;</span><br><span class="line">	                <span class="keyword">if</span> <span class="keyword">let</span> sample = item <span class="keyword">as</span>? <span class="type">HKCategorySample</span> &#123;</span><br><span class="line">	                    <span class="keyword">let</span> value = (sample.value == <span class="type">HKCategoryValueSleepAnalysis</span>.<span class="type">InBed</span>.rawValue) ? <span class="string">"InBed"</span> : <span class="string">"Asleep"</span></span><br><span class="line">	                    <span class="built_in">print</span>(<span class="string">"Healthkit sleep: <span class="subst">\(sample.startDate)</span> <span class="subst">\(sample.endDate)</span> - value: <span class="subst">\(value)</span>"</span>)</span><br><span class="line">	                &#125;</span><br><span class="line">	            &#125;</span><br><span class="line">	        &#125;</span><br><span class="line">	    &#125;</span><br><span class="line">	</span><br><span class="line">	    <span class="comment">// 最后执行查询</span></span><br><span class="line">	    healthStore.executeQuery(query)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这段代码做的事情是：指定期望为降序排列，然后向<code>HealthKit</code>查询所有的睡眠数据。然后每个查询结果都会打印(开始时间，结束时间，睡眠状态)。在构造查询对象时，通过设置<code>limit: 30</code>来指定需要查询的条数为30条，因为前面的期望为降序排列，所以是最近的30条记录，你可以通过指定<code>predicate</code>来限定你想要获取记录的开始和结束时间。</p>
+<h2 id="App测试"><a href="#App测试" class="headerlink" title="App测试"></a>App测试</h2><p>在这个demo中，当你点击<code>Start</code>按钮的时候，我使用了NSTimer来刷新Label的显示，以表示时间的累加。当你点击<code>Start</code>和<code>Stop</code>按钮的时候，会分别创建一个<code>NSDate</code>对象来保存当前时间。当你点击<code>Stop</code>按钮的时候，会计算2个时间的时间差，然后根据这个时间，保存用户的睡眠数据，在<code>func stop(sender: AnyObject)</code>中，你可以调用<code>saveSleepAnalysis()</code> 和 <code>retrieveSleepAnalysis()</code> 方法来保存和获取用户的睡眠数据。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@IBAction</span> <span class="function"><span class="keyword">func</span> <span class="title">stop</span><span class="params">(sender: AnyObject)</span></span> &#123;</span><br><span class="line">	endTime = <span class="type">NSDate</span>()</span><br><span class="line">	saveSleepAnalysis()</span><br><span class="line">	retrieveSleepAnalysis()</span><br><span class="line">	timer.invalidate()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在你的App中，你可能想要修改NSDate对象来选择相关的开始和结束时间(可能是不同的)来保存在床上和睡着了的状态下的数据。</p>
+<p>一旦你做出了更改，你就可以运行这个demo，接着启动timer。让app运行几分钟，然后点击<code>Stop</code>按钮。然后，打开<code>Health</code>应用，你会发现你的App的睡眠数据已经保存在里面了。</p>
+<p><img src="http://www.appcoda.com/wp-content/uploads/2016/06/sleep-analysis-test-1024x725.png" alt="sleep-analysis-test"></p>
+<h2 id="给HealthKit-Apps的一些建议"><a href="#给HealthKit-Apps的一些建议" class="headerlink" title="给HealthKit Apps的一些建议"></a>给HealthKit Apps的一些建议</h2><p>HealthKit旨在给开发者提供一个公共的平台，用于非常便利地访问和共享用户的健康数据，并且避免任何可能状况下的重复或者异常数据。Apple的审核指南非常明确地指出，如果你App使用了HealthKit来向用户请求读写健康数据的权限，但是不能给出明确的用途的话，你的App是会被拒的。</p>
+<p>保存虚假数据或者不正确的数据到Helath应用的App也会被拒。这意味着，你不能轻信你的App中那些计算健康数据的算法(比如在这个教程中的睡眠分析)。你应该尝试使用内置的传感器数据来读取和操作任何参数，以避免计算出错误的数据。</p>
+<p>在<a href="https://github.com/appcoda/SleepAnalysis" target="_blank" rel="external">这里</a>，你可以下载到这个教程对应的完整项目。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/06/11/Mac-OSX平台软件推荐/" rel="next" title="Mac OSX平台软件推荐">
+                <i class="fa fa-chevron-left"></i> Mac OSX平台软件推荐
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/05/转-优秀程序设计一十八原则/" rel="prev" title="[转]优秀程序设计一十八原则">
+                [转]优秀程序设计一十八原则 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/07/18/Using-Sleep-Analysis-in-HealthKit-with-Swift/"
+     data-title="使用Swift实现基于HealthKit的睡眠分析功能"
+     data-content=""
+     data-url="http://bluelich.com/2016/07/18/Using-Sleep-Analysis-in-HealthKit-with-Swift/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div class="ds-thread" data-thread-key="2016/07/18/Using-Sleep-Analysis-in-HealthKit-with-Swift/"
+           data-title="使用Swift实现基于HealthKit的睡眠分析功能" data-url="http://bluelich.com/2016/07/18/Using-Sleep-Analysis-in-HealthKit-with-Swift/">
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Bluelich</p>
+              <p class="site-description motion-element" itemprop="description">iOS开发者,macOS开发者</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="http://weibo.com/u/1376767097" target="_blank" title="Weibo">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Weibo</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://github.com/bluelich" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-globe"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:bluelich@gmail.com" target="_blank" title="Gmail">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Gmail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:bluelich@qq.com" target="_blank" title="Q Mail">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Q Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+            <div class="cc-license motion-element" itemprop="license">
+              <a href="https://creativecommons.org/publicdomain/zero/1.0/" class="cc-opacity" target="_blank">
+                <img src="/images/cc-zero.svg" alt="Creative Commons" />
+              </a>
+            </div>
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用HealthKit框架"><span class="nav-number">2.</span> <span class="nav-text">使用HealthKit框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写入睡眠分析的数据"><span class="nav-number">3.</span> <span class="nav-text">写入睡眠分析的数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#读取睡眠分析数据"><span class="nav-number">4.</span> <span class="nav-text">读取睡眠分析数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#App测试"><span class="nav-number">5.</span> <span class="nav-text">App测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#给HealthKit-Apps的一些建议"><span class="nav-number">6.</span> <span class="nav-text">给HealthKit Apps的一些建议</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Bluelich</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=60661416";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"bluelich"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

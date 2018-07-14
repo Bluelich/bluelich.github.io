@@ -1,0 +1,112 @@
+# 部署信息
+
+deploy:
+
+  type: git
+
+  # https://github.com/Bluelich/bluelich.github.io.git
+
+  repo: https://github.com/Bluelich/bluelich.github.io.git
+
+  branch: master
+
+# 博客名称
+
+title: Bluelich的博客
+
+# 描述
+
+description: iOS开发者,macOS开发者
+
+# 作者
+
+author: Bluelich
+
+# 博客语言
+
+language: zh-Hans
+
+# 博客地址
+
+url: http://bluelich.com
+
+#主题名称
+
+theme: next
+
+# 多说
+
+duoshuo_shortname: bluelich
+duoshuo_share: true
+# Disqus 帐号(多说 Disqus 二选一)
+
+#disqus_shortname: your-disqus-shortname
+
+##增加以下内容##
+
+# 社交链接，将在侧栏中显示
+
+social:
+
+  Weibo: http://weibo.com/u/1376767097
+
+  GitHub: http://github.com/bluelich
+
+#  Facebook: https://www.facebook.com/bluelich
+
+#  Twitter: https://twitter.com/hnjyzqq
+ 
+  Gmail: mailto:bluelich@gmail.com
+  Q Mail: mailto:bluelich@qq.com
+
+# 站点起始时间
+
+since: 2016
+
+# Creative Commons 4.0 International License.
+
+# http://creativecommons.org/
+
+# Available: by | by-nc | by-nc-nd | by-nc-sa | by-nd | by-sa | zero
+
+creative_commons: zero
+
+# 控制主题导航栏显示内容
+
+menu:
+
+  home: /
+
+  categories: /categories
+
+  archives: /archives
+
+  tags: /tags
+
+# 设置为紧凑型主题
+
+scheme: Mist
+
+google_analytics: UA-78250446-1
+baidu_analytics: 6e13fff54d99ee837b32c9e5e8203eaa
+tencent_analytics: 60661416
+
+duoshuo_hotartical: true
+
+search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 10000
+
+index_generator:
+  per_page: 5
+
+archive_generator:
+  per_page: 20
+  yearly: true
+  monthly: true
+
+tag_generator:
+  per_page: 10
+

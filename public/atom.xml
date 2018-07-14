@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Bluelich的博客</title>
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://bluelich.com/"/>
+  <updated>2018-07-05T14:43:13.013Z</updated>
+  <id>http://bluelich.com/</id>
+  
+  <author>
+    <name>Bluelich</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>在macOS上实现多进程任务处理</title>
+    <link href="http://bluelich.com/2017/07/05/%E5%9C%A8macOS%E4%B8%8A%E5%AE%9E%E7%8E%B0%E5%A4%9A%E8%BF%9B%E7%A8%8B%E4%BB%BB%E5%8A%A1%E5%A4%84%E7%90%86/"/>
+    <id>http://bluelich.com/2017/07/05/在macOS上实现多进程任务处理/</id>
+    <published>2017-07-05T13:55:09.000Z</published>
+    <updated>2018-07-05T14:43:13.013Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p>前段时间,由于公司业务关系,开始了macOS的开发.总体来说macOS的开发是不太顺利的,主要是因为macOS的UI显示和交互处理和iOS完全不同,非常多的控件需要自定义,默认没有 back layer 等.<br>后来,因为业务处理需要用到多进程开发就简单的调研了下,多进程的开发开始比较容易的.</p>
+</blockquote>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><blockquote>
+<p>对于多进程,主要的实现方式就是xpc,xpc就是系统用底层的 <code>mach port</code> 和 <code>dispatch</code>等搞的一套高级API.通过xpc,依赖于主进程起一个新的进程,来处理任务,通过xpc的信道来传输消息.<br>使用xpc有很多优势,连接、休眠以及内存等都是系统自动处理的,我们只需要连接上xpc服务,然后按照自定义协议通信就可以了. <a id="more"></a></p>
+</blockquote>
+<h2 id="Go"><a href="#Go" class="headerlink" title="Go"></a>Go</h2><p>依赖于主项目创建一个target,选择<code>XPC Service</code>,然后设置好<code>bundle id</code>,点击<code>Finish</code>. Done!<br>现在你就已经可以和xpc进行通信了.<br>通信需要通过NSXPCConnection获取到对应进程的remote Object,按照协议,向这个Object发消息,接收回调就可以了.<br>需要注意的是,进程间通信传递的参数对象需要满足NSSecureCoding,大部分Foundation实现的一些常用的数据类型都满足这个协议,但是满足了NSSecureCoding的不一定都能传递,比如NSError就不行.而且不能传递返回值给对方进程,会导致崩溃,这个不太清楚是什么原因,有想了解的可以深挖.<br>其他情况下还想传递的对象参数可以在消息传递前把传递的参数类型放到一个集合里,指定传递的参数类型,这样也是可以的.</p>
+<h2 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h2><p>使用xpc通常是多进程服务,给主app提供功能扩展,很多macOS系统App都使用了xpc来实现功能分离和数据隔离,可以通过<code>find /System/Library/Frameworks -name \*.xpc</code>来看下macOS系统中有哪些app使用xpc服务,比如说系统的iWork套件和Xcode就用了xpc.<br>我们可以把项目中的功能模块进行切分,把部分功能放到xpc服务中去,比如说图片处理,文字渲染预处理等.</p>
+<h2 id="Refer"><a href="#Refer" class="headerlink" title="Refer"></a>Refer</h2><p>1 : <a href="https://objccn.io/issue-14-4/" target="_blank" rel="external">https://objccn.io/issue-14-4/</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;前段时间,由于公司业务关系,开始了macOS的开发.总体来说macOS的开发是不太顺利的,主要是因为macOS的UI显示和交互处理和iOS完全不同,非常多的控件需要自定义,默认没有 back layer 等.&lt;br&gt;后来,因为业务处理需要用到多进程开发就简单的调研了下,多进程的开发开始比较容易的.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;对于多进程,主要的实现方式就是xpc,xpc就是系统用底层的 &lt;code&gt;mach port&lt;/code&gt; 和 &lt;code&gt;dispatch&lt;/code&gt;等搞的一套高级API.通过xpc,依赖于主进程起一个新的进程,来处理任务,通过xpc的信道来传输消息.&lt;br&gt;使用xpc有很多优势,连接、休眠以及内存等都是系统自动处理的,我们只需要连接上xpc服务,然后按照自定义协议通信就可以了.
+    
+    </summary>
+    
+    
+      <category term="iOS" scheme="http://bluelich.com/tags/iOS/"/>
+    
+      <category term="macOS" scheme="http://bluelich.com/tags/macOS/"/>
+    
+      <category term="Xcode" scheme="http://bluelich.com/tags/Xcode/"/>
+    
+      <category term="多进程" scheme="http://bluelich.com/tags/%E5%A4%9A%E8%BF%9B%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>浅析Runloop</title>
+    <link href="http://bluelich.com/2016/12/08/Runloop/"/>
+    <id>http://bluelich.com/2016/12/08/Runloop/</id>
+    <published>2016-12-08T05:48:50.000Z</published>
+    <updated>2017-03-22T06:06:50.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>有一定iOS开发经验的人可能都听说过<code>RunLoop</code>。<code>RunLoop</code>，顾名思义，就是run loop ，跑圈的意思。</p>
+<p>Apple对<code>Runloop</code>是这么解释的：</p>
+<blockquote>
+<p> The NSRunLoop class declares the programmatic interface to objects that manage input sources. An NSRunLoop object processes input for sources such as mouse and keyboard events from the window system, NSPort objects, and NSConnection objects. An NSRunLoop object also processes NSTimer events.</p>
+</blockquote>
+<p>​<br>简单的，<code>Runloop</code>可以理解为一个事件循环，循环中执行不同的代码，直到进入下一次循环的条件不足为止！</p>
+<p><code>Runloop</code>不是线程，不是GCD，而是一个对象，在一个APP里面不是唯一的。<a id="more"></a></p>
+<p>下面的这个图介绍了代码执行最常见的两种方式，命令式和event驱动的。其中一个是一次执行到底，而另外一个是反复不停地进行某一个行为，也就是跑圈。<br><img src="http://7xt8tf.com1.z0.glb.clouddn.com/runloop_1.png/blog" alt="runloop_1"></p>
+<p><code>RunLoop</code>就是事件驱动模型的代表。这种模型被称作 Event Loop。 Event Loop 在很多系统和框架里都有实现，比如 Node.js 的事件处理，比如 Windows 程序的消息循环，再比如 OSX/iOS 里的 <code>RunLoop</code>。实现这种模型的关键点在于：如何管理事件/消息，如何让线程在没有处理消息时休眠以避免资源占用、在有消息到来时立刻被唤醒。</p>
+<p>所以，RunLoop 实际上就是一个对象，这个对象管理了其需要处理的事件和消息，并提供了一个入口函数来执行上面 Event Loop 的逻辑。线程执行了这个函数后，就会一直处于这个函数内部 “接受消息-&gt;等待-&gt;处理” 的循环中，直到这个循环结束（比如传入 quit 的消息），函数返回。</p>
+<p>OSX/iOS 系统中，提供了两个这样的对象：<code>NSRunLoop</code> 和 <code>CFRunLoopRef</code>。<br><code>CFRunLoopRef</code> 是在 <code>CoreFoundation</code> 框架内的，它提供了纯 C 函数的 API，所有这些 API 都是线程安全的。而<code>NSRunLoop</code> 是基于<code>CFRunLoopRef</code>的封装，提供了面向对象的 API，但是这些 API 不是线程安全的。<code>CoreFoundation</code>和<code>Foundation</code>对象在ARC中处理也是不一样的。所以使用<code>RunLoop</code>的时候一定要小心。</p>
+<p>Apple 在<code>RunLoop</code>的介绍里还特别强调了下：</p>
+<blockquote>
+<p>The NSRunLoop class is generally not considered to be thread-safe and its methods should only be called within the context of the current thread. You should never try to call the methods of an NSRunLoop object running in a different thread, as doing so might cause unexpected results.</p>
+</blockquote>
+<p>虽然我们无法创建RunLoop，但是Apple给我们提供了两个自动获取的函数：<code>CFRunLoopGetMain()</code> 和 <code>CFRunLoopGetCurrent()</code></p>
+<p>线程和 <code>RunLoop</code> 之间是一一对应的，一个线程只能有唯一对应的<code>runloop</code>，但这个<code>runloop</code>里可以嵌套子<code>runloop</code>，然后把他们之间的关系保存在一个全局的 Dictionary 里。线程刚创建时并没有 <code>RunLoop</code>，如果你不主动获取，那它一直都不会有。<code>RunLoop</code> 的创建是发生在第一次获取时，<code>RunLoop</code> 的销毁是发生在线程结束时。你只能在一个线程的内部获取其 <code>RunLoop</code>（主线程除外）</p>
+<p>下面介绍一点稍深入点的知识<br>先上图<br><img src="http://7xt8tf.com1.z0.glb.clouddn.com/runloop_2.png/blog" alt="runloop_2"></p>
+<p><code>RunnLoop</code>有几个运行状态下的Mode</p>
+<ol>
+<li><code>kCFRunLoopDefaultMode</code>: App的默认 Mode，通常主线程是在这个 Mode 下运行的。</li>
+<li><code>UITrackingRunLoopMode</code>: 界面跟踪 Mode，用于 ScrollView 追踪触摸滑动，保证界面滑动时不受其他 Mode 影响，提高用户体验。</li>
+<li><code>UIInitializationRunLoopMode</code>: 在刚启动 App 时第进入的第一个 Mode，启动完成后就不再使用。</li>
+<li><code>GSEventReceiveRunLoopMode</code>: 接受系统事件的内部 - </li>
+<li><code>kCFRunLoopCommonModes</code>: 这是一个占位的 Mode，没有实际作用。</li>
+</ol>
+<p>一个 RunLoop 包含若干个 Mode，每个 Mode 又包含若干个 Source/Timer/Observer。每次调用 <code>RunLoop</code> 的主函数时，只能指定其中一个 Mode，这个Mode被称作 CurrentMode。如果需要切换 Mode，只能退出 Loop，再重新指定一个 Mode 进入。这样做主要是为了分隔开不同组的 Source/Timer/Observer，让其互不影响。<br>​<br>Source/Timer/Observer 被统称为 mode item，一个 item 可以被同时加入多个 mode。但一个 item 被重复加入同一个 mode 时是不会有效果的。如果一个 mode 中一个 item 都没有，则 <code>RunLoop</code> 会直接退出，不进入循环。</p>
+<p>这里还有个概念叫 CommonModes，一个 Mode 可以将自己标记为Common。每当 <code>RunLoop</code> 的内容发生变化时，RunLoop 都会自动将 CommonMode Items 里的 Source/Observer/Timer 同步到有 Common  标记的所有Mode里。</p>
+<p>我们在开发中经常会用到定时器，如果细心点就会发现，timer在你滑动的时候就会被停止，当滑动结束的时候才会继续。这就是因为mode不同造成的。我们可以把timer也加到滑动专用的trackingMode中去，这样timer就可以在滑动的时候保持继续运行！</p>
+<p>详解：<br>在主线程的 <code>RunLoop</code> 里有两个预置的 Mode：<code>kCFRunLoopDefaultMode</code> 和 <code>UITrackingRunLoopMode</code>。这两个 Mode 都已经被标记为 Common 属性。DefaultMode 是 App 默认状态下所处的状态，<code>TrackingRunLoopMode</code> 是追踪滑动时的状态。当你创建一个 Timer 并加到 DefaultMode 时，Timer 会得到重复回调，但此时滑动一个滚动视图时，<code>RunLoop</code> 会将 mode 切换为 <code>TrackingRunLoopMode</code>，这时 Timer 就不会被回调，并且也不会影响到滑动操作。如果将这个 Timer 分别加入这两个 Mode，或者将 Timer 加入到顶层的 RunLoop 的 CommonMode Items 中。CommonModeItems 被 <code>RunLoop</code> 自动更新到所有具有 Common 属性的 Mode 里去。这样就解决了Timer的回调问题。</p>
+<p>还有一个<code>RunLoop</code>对象类型，叫做<code>CFRunLoopObserverRef</code>。它就是RunLoop的观察者，每一个observer都需要指定一个回调函数的指针，在当 RunLoop 的状态发生变化时，观察者就能通过回调接受到这个变化。<br><code>RunLoop</code>的状态有这么几个<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">kCFRunLoopBeforeTimers--------------------------------即将处理Timer</span><br><span class="line">kCFRunLoopBeforeSources-------------------------------即将处理Source</span><br><span class="line">kCFRunLoopBeforeWaiting-------------------------------即将进入休眠</span><br><span class="line">kCFRunLoopAfterWaiting--------------------------------刚从休眠中唤醒</span><br><span class="line">kCFRunLoopExit----------------------------------------即将退出Loop</span><br></pre></td></tr></table></figure></p>
+<p>有个很出名的cell自动计算行高的高性能三方框架就是利用这个做的优化！ 利用<code>RunLoop</code>即将进入休眠的间隙去做一些耗时的运算，可以大幅减少数据刷新的整体耗时，提高用户体验！</p>
+<p>小Tips：<br>初学iOS的时候，很多人会有疑问，被标记了<code>autorelease</code>的对象究竟在什么时候释放了？到了<code>RunLoop</code>这里就有了答案。<code>RunLoop</code>BeforeWaiting时，对<code>autorelease</code>的对象发送消息,将这次Loop中产生的autorelease对象释放！</p>
+<p>最后提供一些资料：</p>
+<ol>
+<li><a href="http://v.youku.com/v_show/id_XODgxODkzODI0.html" target="_blank" rel="external">sunnyxx的RunLoop线下分享</a></li>
+<li><a href="http://blog.ibireme.com/2015/05/18/runloop/" target="_blank" rel="external">深入理解RunLoop</a> </li>
+<li><a href="https://opensource.apple.com/tarballs/CF/" target="_blank" rel="external">CFRunLoopRef源码</a></li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;有一定iOS开发经验的人可能都听说过&lt;code&gt;RunLoop&lt;/code&gt;。&lt;code&gt;RunLoop&lt;/code&gt;，顾名思义，就是run loop ，跑圈的意思。&lt;/p&gt;
+&lt;p&gt;Apple对&lt;code&gt;Runloop&lt;/code&gt;是这么解释的：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt; The NSRunLoop class declares the programmatic interface to objects that manage input sources. An NSRunLoop object processes input for sources such as mouse and keyboard events from the window system, NSPort objects, and NSConnection objects. An NSRunLoop object also processes NSTimer events.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;​&lt;br&gt;简单的，&lt;code&gt;Runloop&lt;/code&gt;可以理解为一个事件循环，循环中执行不同的代码，直到进入下一次循环的条件不足为止！&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;Runloop&lt;/code&gt;不是线程，不是GCD，而是一个对象，在一个APP里面不是唯一的。
+    
+    </summary>
+    
+    
+      <category term="iOS" scheme="http://bluelich.com/tags/iOS/"/>
+    
+      <category term="Runloop" scheme="http://bluelich.com/tags/Runloop/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>[转]优秀程序设计一十八原则</title>
+    <link href="http://bluelich.com/2016/08/05/%E8%BD%AC-%E4%BC%98%E7%A7%80%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E4%B8%80%E5%8D%81%E5%85%AB%E5%8E%9F%E5%88%99/"/>
+    <id>http://bluelich.com/2016/08/05/转-优秀程序设计一十八原则/</id>
+    <published>2016-08-05T15:07:28.000Z</published>
+    <updated>2017-02-23T01:32:57.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="http://www.artima.com/weblogs/viewpost.jsp?thread=331531" target="_blank" rel="external">原文链接(English)</a><br><a href="http://www.csdn.net/article/2011-07-29/302424" target="_blank" rel="external">译文链接</a></p>
+<p><strong> 1.避免重复原则（DRY - Don’t repeat yourself）</strong><br>编程的最基本原则是避免重复。在程序代码中总会有很多结构体，如循环、函数、类等等。一旦你重复某个语句或概念，就会很容易形成一个抽象体。<br><strong> 2.抽象原则（Abstraction Principle ）</strong><br>与DRY原则相关。要记住，程序代码中每一个重要的功能，只能出现在源代码的一个位置。<br><strong> 3.简单原则（Keep It Simple and Stupid ）</strong><br>简单是软件设计的目标，简单的代码占用时间少，漏洞少，并且易于修改。 <a id="more"></a><br><strong> 4.避免创建你不要的代码 Avoid Creating a YAGNI (You aren’t going to need it)</strong><br>除非你需要它，否则别创建新功能。<br><strong> 5.尽可能做可运行的最简单的事（Do the simplest thing that could possibly work）</strong><br>尽可能做可运行的最简单的事。在编程中，一定要保持简单原则。作为一名程序员不断的反思“如何在工作中做到简化呢？”这将有助于在设计中保持简单的路径。<br><strong> 6.别让我思考(Don’t make me think )</strong><br>这是Steve Krug一本书的标题，同时也和编程有关。所编写的代码一定要易于读易于理解，这样别人才会欣赏，也能够给你提出合理化的建议。相反，若是繁杂难解的程序，其他人总是会避而远之的。<br><strong> 7.开闭原则(Open/Closed Principle)</strong><br>你所编写的软件实体（类、模块、函数等）最好是开源的，这样别人可以拓展开发。不过，对于你的代码，得限定别人不得修改。换句话说，别人可以基于你的代码进行拓展编写，但却不能修改你的代码。<br><strong> 8.代码维护(Write Code for the Maintainer)</strong><br>一个优秀的代码，应当使本人或是他人在将来都能够对它继续编写或维护。代码维护时，或许本人会比较容易，但对他人却比较麻烦。因此你写的代码要尽可能保证他人能够容易维护。用书中原话说“如果一个维护者不再继续维护你的代码，很可能他就有想杀了你的冲动。”<br><strong> 9.最小惊讶原则(Principle of least astonishment)</strong><br>最小惊讶原则通常是在用户界面方面引用，但同样适用于编写的代码。代码应该尽可能减少让读者惊喜。也就是说，你编写的代码只需按照项目的要求来编写。其他华丽的功能就不必了，以免弄巧成拙。<br><strong> 10.单一责任原则(Single Responsibility Principle) </strong><br>某个代码的功能，应该保证只有单一的明确的执行任务。<br><strong> 11.低耦合原则(Minimize Coupling)</strong><br>代码的任何一个部分应该减少对其他区域代码的依赖关系。尽量不要使用共享参数。低耦合往往是完美结构系统和优秀设计的标志。<br><strong> 12.最大限度凝聚原则(Maximize Cohesion)</strong><br>相似的功能代码应尽量放在一个部分。<br><strong> 13.隐藏实现细节（Hide Implementation Details）</strong><br>隐藏实现细节原则，当其他功能部分发生变化时，能够尽可能降低对其他组件的影响。<br><strong> 14.迪米特法则又叫作最少知识原则(Law of Demeter)</strong><br>该代码只和与其有直接关系的部分连接。（比如：该部分继承的类，包含的对象，参数传递的对象等）。<br><strong> 15.避免过早优化(Avoid Premature Optimization)</strong><br>除非你的代码运行的比你想像中的要慢，否则别去优化。假如你真的想优化，就必须先想好如何用数据证明，它的速度变快了。<br>“过早的优化是一切罪恶的根源”——Donald Knuth<br><strong> 16.代码重用原则（Code Reuse is Good） </strong><br>重用代码能提高代码的可读性，缩短开发时间。<br><strong> 17.关注点分离（Separation of Concerns）</strong><br>不同领域的功能，应该由不同的代码和最小重迭的模块组成。<br><strong> 18.拥抱改变（Embrace Change）</strong><br>这是Kent Beck一本书的标题，同时也被认为是极限编程和敏捷方法的宗旨。<br>许多其他原则都是基于这个概念的，即你应该积极面对变化。事实上，一些较老的编程原则如最小化耦合原则都是为了使代码能够容易变化。无论你是否是个极限编程者，基于这个原则去编写代码会让你的工作变得更有意义。<br><strong>作者简介</strong>：Christopher Diggins是加拿大一位有25年编程经验的资深技术人员，曾效力于Microsoft和Autodesk，并创办过两家赢利的互联网公司。<br>他是《C++ Cookbook》的作者之一，并自己编写了一门编程语言Heron。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;a href=&quot;http://www.artima.com/weblogs/viewpost.jsp?thread=331531&quot;&gt;原文链接(English)&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://www.csdn.net/article/2011-07-29/302424&quot;&gt;译文链接&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt; 1.避免重复原则（DRY - Don’t repeat yourself）&lt;/strong&gt;&lt;br&gt;编程的最基本原则是避免重复。在程序代码中总会有很多结构体，如循环、函数、类等等。一旦你重复某个语句或概念，就会很容易形成一个抽象体。&lt;br&gt;&lt;strong&gt; 2.抽象原则（Abstraction Principle ）&lt;/strong&gt;&lt;br&gt;与DRY原则相关。要记住，程序代码中每一个重要的功能，只能出现在源代码的一个位置。&lt;br&gt;&lt;strong&gt; 3.简单原则（Keep It Simple and Stupid ）&lt;/strong&gt;&lt;br&gt;简单是软件设计的目标，简单的代码占用时间少，漏洞少，并且易于修改。
+    
+    </summary>
+    
+    
+      <category term="转载" scheme="http://bluelich.com/tags/%E8%BD%AC%E8%BD%BD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用Swift实现基于HealthKit的睡眠分析功能</title>
+    <link href="http://bluelich.com/2016/07/18/Using-Sleep-Analysis-in-HealthKit-with-Swift/"/>
+    <id>http://bluelich.com/2016/07/18/Using-Sleep-Analysis-in-HealthKit-with-Swift/</id>
+    <published>2016-07-18T13:03:52.000Z</published>
+    <updated>2016-07-23T12:35:57.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>原文:<a href="http://www.appcoda.com/sleep-analysis-healthkit/" target="_blank" rel="external">链接</a><br>译者:<a href="http://weibo.com/u/1376767097" target="_blank" rel="external">Bluelich</a></p>
+<p>如今,睡眠分析的彻底改变已经成为一种趋势。用户比以往更加好奇，他们不仅希望知道自己的睡眠时间，比如说什么时候开始进入睡眠等，他们还想要通过获得聚合数据来了解自己的睡眠趋势。而今，硬件和手机的技术革新，给这个正在日益增长的用户群体带来了新的曙光。</p>
+<p>Apple提供了一个非常酷的方式，让你可以以非常安全的方式，通过内置的<code>健康</code>应用和用户的健康信息进行交互。你不仅仅可以通过使用<code>HealthKit</code>来<a href="https://www.appcoda.com/healthkit-introduction/" target="_blank" rel="external">构建一个健身App</a>，该框架还允许你对用户睡眠数据进行分析。</p>
+<p>在这个教程里，我将会对<code>HealthKit</code>进行一个简单介绍，并演示如何构建一个简单的睡眠分析App。<a id="more"></a></p>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>HealthKit框架提供了一个叫做<code>HealthKit store</code>的加密数据库结构来保存数据。你可以通过<code>HKHealthStore</code>这个类来访问这个数据库。 iPhone和Apple Watch都有他们自己的<code>HealthKit Store</code>。 健康数据会在iPhone和Apple Watch上进行同步；需要注意的是在Apple Watch上，一旦可用空间不足，旧的数据就会被删除掉；另外<code>HealthKit</code>在iPad上无法使用。</p>
+<p>如果你想创建一个基于健康数据的iOS或watchOS应用，HealthKit将会是一个非常强大的工具。<br>它被设计为一个管理各个来源的健康数据的工具，根据用户的偏好设置，将这些数据进行聚合。这些基于<code>HealthKit</code>的App拥有在<code>健康</code>App中各自数据的读写访问权限，还可以将各自的数据进行合并。这些数据不仅包括用户身体状况的基本数据，健身信息，营养状况，还包括用户的睡眠分析数据。</p>
+<p>本文的其余部分,我将向您展示如何在iOS上利用<code>HealthKit</code>框架读写睡眠分析数据。 同样的方法也适用于watchOS应用程序。 请注意,本教程编写使用Swift 2.0 和 Xcode 7。所以确保你使用的也是Xcode 7，以便继续下面的教程。</p>
+<p>在进行下一步之前，你可以先下载这个<a href="https://github.com/appcoda/SleepAnalysis/blob/master/SleepAnalysisStarter.zip?raw=true" target="_blank" rel="external">启动项目</a>然后解压。这是一个拥有基本功能的App。运行这个项目后，你会看到一个显示时间的计时器UI和一个开始按钮。</p>
+<h2 id="使用HealthKit框架"><a href="#使用HealthKit框架" class="headerlink" title="使用HealthKit框架"></a>使用HealthKit框架</h2><p>我们要实现的效果是，通过点击<code>Start</code>和<code>Stop</code>按钮来保存和查询用户的数据。要使用<code>HealthKit</code>，必须先让你的App获取到<code>HealthKit</code>权限，在工程中选中当前项目Target，然后选择Capabilities,打开<code>HealthKit</code>的开关<br><img src="http://www.appcoda.com/wp-content/uploads/2016/05/HealthKit-allow-1024x640.png" alt="HealthKit-allow"><br>接下来，你讲需要在<code>ViewController</code>中创建一个<code>HKHealthStore</code>的对象。<br>代码如下：<br><code>let healthStore = HKHealthStore()</code><br>后面我们就要使用这个对象<code>healthStore</code>来访问<code>HealthKit store</code>了</p>
+<p>就像前面说的那样，HealthKit给予用户权限来掌控自己的健康数据，因此你在对用户的睡眠数据进行分析之前，需要先获得用户的许可。要获得许可，需要先引入<code>HealthKit</code>framework，然后更新<code>viewDidLoad</code>里的代码。</p>
+<p>代码如下：<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewDidLoad</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="keyword">super</span>.viewDidLoad()</span><br><span class="line">    <span class="keyword">let</span> typestoRead = <span class="type">Set</span>([</span><br><span class="line">        <span class="type">HKObjectType</span>.categoryTypeForIdentifier(<span class="type">HKCategoryTypeIdentifierSleepAnalysis</span>)!</span><br><span class="line">        ])</span><br><span class="line">    <span class="keyword">let</span> typestoShare = <span class="type">Set</span>([</span><br><span class="line">        <span class="type">HKObjectType</span>.categoryTypeForIdentifier(<span class="type">HKCategoryTypeIdentifierSleepAnalysis</span>)!</span><br><span class="line">        ])</span><br><span class="line">    <span class="keyword">self</span>.healthStore.requestAuthorizationToShareTypes(typestoShare, readTypes: typestoRead) &#123; (success, error) -&gt; <span class="type">Void</span> <span class="keyword">in</span></span><br><span class="line">        <span class="keyword">if</span> success == <span class="literal">false</span> &#123;</span><br><span class="line">            <span class="type">NSLog</span>(<span class="string">"请求权限失败"</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这段代码将提示用户<code>Allow</code>或<code>Dont Allow</code>你的权限请求。 通过这个completion block,您可以处理成功或错误，并得到最终结果。 让用户授予App所有请求的权限并不是必要的，所以你必须优雅地处理应用程序中的错误。</p>
+<p>但对于测试的目的,你必须选择“Allow”选项给予允许应用程序访问设备的健康数据。</p>
+<p><img src="http://www.appcoda.com/wp-content/uploads/2016/05/Health-App-Permission.png" alt="Health-App-Permission"></p>
+<h2 id="写入睡眠分析的数据"><a href="#写入睡眠分析的数据" class="headerlink" title="写入睡眠分析的数据"></a>写入睡眠分析的数据</h2><p>首先,我们如何检索睡眠分析数据? 根据Apple的文档,每个睡眠分析样本只能有一个值。 <code>HealthKit</code>使用两个或更多的样本的叠加来代表用户在床上和睡眠中的状态。 通过比较这些样本的开始和结束时间,应用程序可以二次统计:</p>
+<ul>
+<li>用户进入睡眠所用的时间</li>
+<li>实际睡觉的时间对比在床上的时间的百分比</li>
+<li>用户在床上醒来的次数</li>
+<li>进入睡眠和在床上的时间之和</li>
+</ul>
+<p><img src="http://www.appcoda.com/wp-content/uploads/2016/05/record_sleep_data-1024x525.png" alt="record\_sleep\_data"></p>
+<p>简而言之,你需要遵循以下方法来吧睡眠分析数据保存到<code>HealthKit store</code>中:</p>
+<ol>
+<li>我们需要定义2个 <code>NSDate</code>  对象，分别对应起始时间和结束时间。</li>
+<li>然后用<code>HKCategoryTypeIdentifierSleepAnalysis</code>(这是一个<code>Enum</code>)创建一个 <code>HKObjectType</code>对象 .</li>
+<li>我们需要创建一个新的<code>HKCategorySample</code>的对象,因为我们需要用这个对象来记录睡眠数据。个人样本代表了用户在床上或者睡着了的时间周期。因此我们要创建2个样本，分别是在床上的样本和睡着了的样本的时间</li>
+<li>最后, 我们使用<code>HKHealthStore</code>的 <code>saveObject</code> 这个类方法，保存数据.</li>
+</ol>
+<p><strong>编者注</strong>: 对于<code>HKCategorySample</code>的类型,可以查看 <a href="https://developer.apple.com/library/ios/documentation/HealthKit/Reference/HealthKit_Constants/index.html#//apple_ref/doc/uid/TP40014710" target="_blank" rel="external">HealthKit Constants Reference</a>。</p>
+<p>下面我们用Swift来实现上面的4个步骤,保存用户的睡眠数据。 请讲该代码片段放到<code>ViewController</code>类中。</p>
+<p>代码如下：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">saveSleepAnalysis</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="comment">// alarmTime 和 endTime 都是 NSDate 对象</span></span><br><span class="line">	<span class="keyword">if</span> <span class="keyword">let</span> sleepType = <span class="type">HKObjectType</span>.categoryTypeForIdentifier(<span class="type">HKCategoryTypeIdentifierSleepAnalysis</span>) &#123;</span><br><span class="line">	</span><br><span class="line">	    <span class="comment">// 根据我们想要做的事情,选择相应的类型和起止时间，构造出一个新的HKCategorySample对象，我们将通过这个对象和系统的Health应用进行交互</span></span><br><span class="line">	    <span class="keyword">let</span> object = <span class="type">HKCategorySample</span>(type:sleepType, value: <span class="type">HKCategoryValueSleepAnalysis</span>.<span class="type">InBed</span>.rawValue, startDate: <span class="keyword">self</span>.alarmTime, endDate: <span class="keyword">self</span>.endTime)</span><br><span class="line">	</span><br><span class="line">	    <span class="comment">// 然后，保存下来</span></span><br><span class="line">	    healthStore.saveObject(object, withCompletion: &#123; (success, error) -&gt; <span class="type">Void</span> <span class="keyword">in</span></span><br><span class="line">	</span><br><span class="line">	        <span class="keyword">if</span> error != <span class="literal">nil</span> &#123;</span><br><span class="line">	            <span class="comment">// 这里可以处理下error</span></span><br><span class="line">	            <span class="keyword">return</span></span><br><span class="line">	        &#125;</span><br><span class="line">	</span><br><span class="line">	        <span class="keyword">if</span> success &#123;</span><br><span class="line">	            <span class="built_in">print</span>(<span class="string">"数据已经保存到Health App中了"</span>)</span><br><span class="line">	</span><br><span class="line">	        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">	            <span class="comment">// 处理其他异常</span></span><br><span class="line">	        &#125;</span><br><span class="line">	</span><br><span class="line">	    &#125;)</span><br><span class="line">	</span><br><span class="line">	    <span class="keyword">let</span> object2 = <span class="type">HKCategorySample</span>(type:sleepType, value: <span class="type">HKCategoryValueSleepAnalysis</span>.<span class="type">Asleep</span>.rawValue, startDate: <span class="keyword">self</span>.alarmTime, endDate: <span class="keyword">self</span>.endTime)</span><br><span class="line">	</span><br><span class="line">	    healthStore.saveObject(object2, withCompletion: &#123; (success, error) -&gt; <span class="type">Void</span> <span class="keyword">in</span></span><br><span class="line">	        <span class="keyword">if</span> error != <span class="literal">nil</span> &#123;</span><br><span class="line">	            <span class="comment">// 这里可以处理下error</span></span><br><span class="line">	            <span class="keyword">return</span></span><br><span class="line">	        &#125;</span><br><span class="line">	</span><br><span class="line">	        <span class="keyword">if</span> success &#123;</span><br><span class="line">	            <span class="built_in">print</span>(<span class="string">"数据已经保存到Health App中了"</span>)</span><br><span class="line">	        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">	            <span class="comment">// 处理其他异常</span></span><br><span class="line">	        &#125;</span><br><span class="line">	</span><br><span class="line">	    &#125;)</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当我们想要保存我们自己App的睡眠数据到HealthKit的时候，可以调用这个方法。</p>
+<h2 id="读取睡眠分析数据"><a href="#读取睡眠分析数据" class="headerlink" title="读取睡眠分析数据"></a>读取睡眠分析数据</h2><p>要读取睡眠分析数据,我们需要创建一个<code>HKSampleQuery</code>来进行查询。 通过指定<code>HKCategoryTypeIdentifierSleepAnalysis</code>来创建一个<code>HKObjectType</code> 的对象 。 您可能还希望使用谓词来过滤获取到的数据，你可以通过指定<code>startDate</code> 和<code>endDate</code> 来确定你要查询的时间范围。 你可能还想要创建一个sortDescriptor 来对最终结果进行排序。</p>
+<p>获取睡眠分析结果数据的代码如下：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">retrieveSleepAnalysis</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="comment">// 首先，通过构造一个HKObjectType，来指定我们要查询的类型</span></span><br><span class="line">	<span class="keyword">if</span> <span class="keyword">let</span> sleepType = <span class="type">HKObjectType</span>.categoryTypeForIdentifier(<span class="type">HKCategoryTypeIdentifierSleepAnalysis</span>) &#123;</span><br><span class="line">	</span><br><span class="line">	    <span class="comment">// 使用sortDescriptor来获取到最新的数据</span></span><br><span class="line">	    <span class="keyword">let</span> sortDescriptor = <span class="type">NSSortDescriptor</span>(key: <span class="type">HKSampleSortIdentifierEndDate</span>, ascending: <span class="literal">false</span>)</span><br><span class="line">	</span><br><span class="line">	    <span class="comment">// 创建一次查询，在下一步执行查询后，会回调这个构造函数的block，我们可以通过这个回调来对获取的结果进行处理</span></span><br><span class="line">	    <span class="keyword">let</span> query = <span class="type">HKSampleQuery</span>(sampleType: sleepType, predicate: <span class="literal">nil</span>, limit: <span class="number">30</span>, sortDescriptors: [sortDescriptor]) &#123; (query, tmpResult, error) -&gt; <span class="type">Void</span> <span class="keyword">in</span></span><br><span class="line">	</span><br><span class="line">	        <span class="keyword">if</span> error != <span class="literal">nil</span> &#123;</span><br><span class="line">	</span><br><span class="line">	            <span class="comment">// 这里可以处理下error</span></span><br><span class="line">	            <span class="keyword">return</span></span><br><span class="line">	</span><br><span class="line">	        &#125;</span><br><span class="line">	</span><br><span class="line">	        <span class="keyword">if</span> <span class="keyword">let</span> result = tmpResult &#123;</span><br><span class="line">	</span><br><span class="line">	            <span class="comment">// 处理数据</span></span><br><span class="line">	            <span class="keyword">for</span> item <span class="keyword">in</span> result &#123;</span><br><span class="line">	                <span class="keyword">if</span> <span class="keyword">let</span> sample = item <span class="keyword">as</span>? <span class="type">HKCategorySample</span> &#123;</span><br><span class="line">	                    <span class="keyword">let</span> value = (sample.value == <span class="type">HKCategoryValueSleepAnalysis</span>.<span class="type">InBed</span>.rawValue) ? <span class="string">"InBed"</span> : <span class="string">"Asleep"</span></span><br><span class="line">	                    <span class="built_in">print</span>(<span class="string">"Healthkit sleep: <span class="subst">\(sample.startDate)</span> <span class="subst">\(sample.endDate)</span> - value: <span class="subst">\(value)</span>"</span>)</span><br><span class="line">	                &#125;</span><br><span class="line">	            &#125;</span><br><span class="line">	        &#125;</span><br><span class="line">	    &#125;</span><br><span class="line">	</span><br><span class="line">	    <span class="comment">// 最后执行查询</span></span><br><span class="line">	    healthStore.executeQuery(query)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这段代码做的事情是：指定期望为降序排列，然后向<code>HealthKit</code>查询所有的睡眠数据。然后每个查询结果都会打印(开始时间，结束时间，睡眠状态)。在构造查询对象时，通过设置<code>limit: 30</code>来指定需要查询的条数为30条，因为前面的期望为降序排列，所以是最近的30条记录，你可以通过指定<code>predicate</code>来限定你想要获取记录的开始和结束时间。</p>
+<h2 id="App测试"><a href="#App测试" class="headerlink" title="App测试"></a>App测试</h2><p>在这个demo中，当你点击<code>Start</code>按钮的时候，我使用了NSTimer来刷新Label的显示，以表示时间的累加。当你点击<code>Start</code>和<code>Stop</code>按钮的时候，会分别创建一个<code>NSDate</code>对象来保存当前时间。当你点击<code>Stop</code>按钮的时候，会计算2个时间的时间差，然后根据这个时间，保存用户的睡眠数据，在<code>func stop(sender: AnyObject)</code>中，你可以调用<code>saveSleepAnalysis()</code> 和 <code>retrieveSleepAnalysis()</code> 方法来保存和获取用户的睡眠数据。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@IBAction</span> <span class="function"><span class="keyword">func</span> <span class="title">stop</span><span class="params">(sender: AnyObject)</span></span> &#123;</span><br><span class="line">	endTime = <span class="type">NSDate</span>()</span><br><span class="line">	saveSleepAnalysis()</span><br><span class="line">	retrieveSleepAnalysis()</span><br><span class="line">	timer.invalidate()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在你的App中，你可能想要修改NSDate对象来选择相关的开始和结束时间(可能是不同的)来保存在床上和睡着了的状态下的数据。</p>
+<p>一旦你做出了更改，你就可以运行这个demo，接着启动timer。让app运行几分钟，然后点击<code>Stop</code>按钮。然后，打开<code>Health</code>应用，你会发现你的App的睡眠数据已经保存在里面了。</p>
+<p><img src="http://www.appcoda.com/wp-content/uploads/2016/06/sleep-analysis-test-1024x725.png" alt="sleep-analysis-test"></p>
+<h2 id="给HealthKit-Apps的一些建议"><a href="#给HealthKit-Apps的一些建议" class="headerlink" title="给HealthKit Apps的一些建议"></a>给HealthKit Apps的一些建议</h2><p>HealthKit旨在给开发者提供一个公共的平台，用于非常便利地访问和共享用户的健康数据，并且避免任何可能状况下的重复或者异常数据。Apple的审核指南非常明确地指出，如果你App使用了HealthKit来向用户请求读写健康数据的权限，但是不能给出明确的用途的话，你的App是会被拒的。</p>
+<p>保存虚假数据或者不正确的数据到Helath应用的App也会被拒。这意味着，你不能轻信你的App中那些计算健康数据的算法(比如在这个教程中的睡眠分析)。你应该尝试使用内置的传感器数据来读取和操作任何参数，以避免计算出错误的数据。</p>
+<p>在<a href="https://github.com/appcoda/SleepAnalysis" target="_blank" rel="external">这里</a>，你可以下载到这个教程对应的完整项目。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;原文:&lt;a href=&quot;http://www.appcoda.com/sleep-analysis-healthkit/&quot;&gt;链接&lt;/a&gt;&lt;br&gt;译者:&lt;a href=&quot;http://weibo.com/u/1376767097&quot;&gt;Bluelich&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;如今,睡眠分析的彻底改变已经成为一种趋势。用户比以往更加好奇，他们不仅希望知道自己的睡眠时间，比如说什么时候开始进入睡眠等，他们还想要通过获得聚合数据来了解自己的睡眠趋势。而今，硬件和手机的技术革新，给这个正在日益增长的用户群体带来了新的曙光。&lt;/p&gt;
+&lt;p&gt;Apple提供了一个非常酷的方式，让你可以以非常安全的方式，通过内置的&lt;code&gt;健康&lt;/code&gt;应用和用户的健康信息进行交互。你不仅仅可以通过使用&lt;code&gt;HealthKit&lt;/code&gt;来&lt;a href=&quot;https://www.appcoda.com/healthkit-introduction/&quot;&gt;构建一个健身App&lt;/a&gt;，该框架还允许你对用户睡眠数据进行分析。&lt;/p&gt;
+&lt;p&gt;在这个教程里，我将会对&lt;code&gt;HealthKit&lt;/code&gt;进行一个简单介绍，并演示如何构建一个简单的睡眠分析App。
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Mac OSX平台软件推荐</title>
+    <link href="http://bluelich.com/2016/06/11/Mac-OSX%E5%B9%B3%E5%8F%B0%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/"/>
+    <id>http://bluelich.com/2016/06/11/Mac-OSX平台软件推荐/</id>
+    <published>2016-06-11T14:35:13.000Z</published>
+    <updated>2016-07-23T16:15:31.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><strong>非开发类</strong><br>1.<code>WeiboX</code>:Mac上看微博必备</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/1-1.png/blog" alt=""></p>
+<p>2.<code>1Password</code>:同步账户密码,license等的神器,最好买MAS版本,可以用iCloud</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/1-2.png/blog" alt=""></p>
+<p>3.<code>Alfred</code>:Mac上最好用的workflow工具,是个效率工具<a id="more"></a></p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/1-3.png/blog" alt=""></p>
+<p>4.<code>Aria2</code>:Mac上百度,迅雷,115网盘下载的神器,需要配合chrome的插件使用</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/1-4.png/blog" alt=""></p>
+<p>5.<code>Bartender</code>:最好用的StatusBar管理工具,可以选择隐藏一些不会经常去手动操作的App的icon</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/1-5.png/blog" alt=""><br>6.<code>BetterSnapTool</code>:窗口管理工具,对键盘党来说,应该是最好用的了</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/1-6.png/blog" alt=""></p>
+<p>7.<code>BetterTouchTool</code>:触摸板功能扩展工具</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/1-7.png/blog" alt=""></p>
+<p>8.<code>Bilibili</code>:非官方客户端</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/1-8.png/blog" alt=""></p>
+<p>9.<code>Boom2</code>:Mac音效增强工具,对声音稍敏感些的人,用过就离不开的App,iOS上的App也已经在前段时间上架</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/1-9.png/blog" alt=""></p>
+<p>10.<code>CheatSheet</code>:长按⌘,就可以显示当前App的基本上所有的快捷键</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/1-10.png/blog" alt=""></p>
+<p>11.<code>CleanMyMac</code></p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/1-11.png/blog" alt=""></p>
+<p>12.<code>Commander One Pro</code>:目前Mac上可以完全代替Finder的唯一工具,功能强大</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/1-12.png/blog" alt=""></p>
+<p>13.<code>Downie</code>:粘贴上一个视频网站的链接,就可以自动解析出视频地址,并下载的App,支持Youtube,Youku等大部分网站</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/1-13.png/blog" alt=""></p>
+<p>14.<code>Duet</code>:支持把iPhone,iPad,甚至是win的屏幕作为屏幕扩展的一款软件,由Apple前工程师开发</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/1-14.png/blog" alt=""></p>
+<p>15.<code>欧陆词典</code>:Mac上最好用的词典,内置多种词库,支持云同步</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/1-15.png/blog" alt=""></p>
+<p>16.<code>Feedly</code>:RSS阅读器</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/1-16.png/blog" alt=""></p>
+<p>17.<code>Folx</code>:非常强大的下载工具,通常会比迅雷等下载的快一些</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/1-17.png/blog" alt=""></p>
+<p>18.<code>HazeOver</code>:使用后,会自动把激活窗口高亮,帮你集中注意力</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/1-18.png/blog" alt=""></p>
+<p>19.<code>InsomniaX</code>:有几个不是太常用的功能,比如可以在你合上盖子的时候不中断下载等</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/1-19.png/blog" alt=""></p>
+<p>20.<code>iStat Menus</code>:用的最多的一般都是它的网速显示小工具</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/1-20-1.png/blog" alt=""></p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/1-20-2.png/blog" alt=""></p>
+<p>21.<code>Magnet</code>:同样是窗口管理工具,但是非常便宜</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/1-21.png/blog" alt=""></p>
+<p>22.<code>Manico</code>:非常方便的用键盘切换App的应用</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/1-22.png/blog" alt=""></p>
+<p>23.<code>Mark Man</code>:通常是设计师用来标注的软件,不过好些开发用的最多</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/1-23.png/blog" alt=""></p>
+<p>24.<code>Moom</code>:可能是目前最出名的窗口管理工具,还可以</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/1-24.png/blog" alt=""></p>
+<p>25.<code>Mou</code>:读写Markdown的必备软件. 作者曾经说要上架1.0版本,结果1年多了,还是没消息,但是0.8.7的beta版也是蛮好用的,就是代码块支持的不太好,作者说在1.0会支持,但是明显是不可能了</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/1-25.png/blog" alt=""></p>
+<p>26.<code>Mounty</code>:可以不用装插件,让Mac支持NTFS</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/1-26.png/blog" alt=""></p>
+<p>27.<code>MWeb</code>:用来写markdown的另外一款软件,目前除了Mou,大部分人用的应该都是它</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/1-27.png/blog" alt=""></p>
+<p>28.<code>Near Lock</code>:利用BLE4.0技术,自动lock/unlock 你的Mac的一个软件,软件功能目前已经非常稳定了</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/1-28.png/blog" alt=""></p>
+<p>29.<code>网易云音乐</code></p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/1-29.png/blog" alt=""></p>
+<p>30.<code>OmniGraffle</code></p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/1-30.png/blog" alt=""></p>
+<p>31.<code>Paste</code>:剪贴板管理软件,颜值比较高,不过暂时不能云同步</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/1-31.png/blog" alt=""></p>
+<p>32.<code>Pocket</code></p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/1-32.png/blog" alt=""></p>
+<p>33.<code>PopClip</code>:一个功能强大的小工具,popup一个小工具条,然后通过它的插件来实现一些功能</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/1-33-1.png/blog" alt=""></p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/1-33-2.png/blog" alt=""></p>
+<p>34.<code>PPDuck</code>:图片压缩工具,自动选择最优方案,速度较快,好像都是有损压缩</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/1-34.png/blog" alt=""></p>
+<p>35.<code>Proxifier</code>:功能跟名字一样</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/1-35.png/blog" alt=""></p>
+<p>36.<code>Reeder</code>:Rss阅读工具,支持者比较多,我自己没用这个</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/1-36.png/blog" alt=""></p>
+<p>37.<code>Leaf</code>:Rss阅读工具</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/1-37.png/blog" alt=""></p>
+<p>38.<code>ShadowsocksX</code>:Mac上使用ss的必备工具</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/1-38.png/blog" alt=""></p>
+<p>39.<code>Spotify</code>:音乐软件,不过不付费的话,会有广告</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/1-39.png/blog" alt=""></p>
+<p>40.<code>Surge</code>:又是一个强大的梯子,每个月需要用iOS端的App激活一次</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/1-40.png/blog" alt=""></p>
+<p>41.<code>SwitchHosts</code>:host管理工具,特别是经常需要切换host的人,非常有用</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/1-41.png/blog" alt=""></p>
+<p>42.<code>The Unarchiver</code>:解压缩工具,MAS上免费</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/1-42.png/blog" alt=""></p>
+<p>43.<code>Tickeys</code>:一个有趣的软件,可以自己尝试下(免费)</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/1-43.png/blog" alt=""></p>
+<p>44.<code>Ulysses</code>:在MWeb出来前是最好用的Markdown写作软件(当然,现在也是!)<br>不过MWeb的用户可能会更多些(因为便宜py)</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/1-44.png/blog" alt=""></p>
+<p>45.<code>Yoink</code>:随时随地暂存文件的工具,可以拖动任何格式的文件到它的管理区内,这样的软件比较多,但是这个比较好用些</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/1-45-1.png/blog" alt=""></p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/1-45-2.png/blog" alt=""></p>
+<p>46.<code>鼠须管:</code>神级输入法,有一定的门槛,但是如果要求不高,那就和普通输入法基本一样,不需要什么配置,主题,词库之类的配置起来也非常容易</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/1-46.png/blog" alt=""></p>
+<p><strong>开发类</strong><br>1.<code>AliasManage</code>:alias管理工具,首次使用需要选择.bashsrc 或者.zshrc等终端配置文件</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/2-1.png/blog" alt=""></p>
+<p>2.<code>Atom</code>:Github出品的一个写代码的工具,和Sublime类似,但是颜值比较高,交互也不错,插件也比较多</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/2-2.png/blog" alt=""></p>
+<p>3.<code>Base</code>:好用的数据库管理工具</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/2-3.png/blog" alt=""></p>
+<p>4.<code>Charles</code>:非常强大的网络调试工具</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/2-4.png/blog" alt=""></p>
+<p>5.<code>Dash</code>:开发文档管理和查看工具,支持非常多的语言,还支持google和stackoverflow</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/2-5.png/blog" alt=""></p>
+<p>6.<code>dSYM</code>:Crash log自动分析的好工具</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/2-6.png/blog" alt=""></p>
+<p>7.<code>FileZilla</code>:开源的FTP工具</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/2-7.png/blog" alt=""></p>
+<p>8.<code>RegexToolBox</code>:正则测试工具</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/2-8.png/blog" alt=""></p>
+<p>9.<code>WWDC</code>:wwdc资源下载工具,也可以在线看</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/2-9.png/blog" alt=""></p>
+<p>10.<code>Hopper Disassembler</code>:逆向必备,比IDA容易很多</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/2-10.png/blog" alt=""></p>
+<p>11.<code>Hype</code>:无需代码的web开发的工具</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/2-11.png/blog" alt=""></p>
+<p>12.<code>iTerm</code>:替代系统自带终端的工具,配合zsh,非常好用</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/2-12.png/blog" alt=""></p>
+<p>13.<code>VSCode</code>:微软出品的一个写代码的工具,插件不是很多,但是非常干净整洁</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/2-13.png/blog" alt=""></p>
+<p>14.<code>PaintCode</code>:把设计稿自动转换为代码的工具</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/2-14.png/blog" alt=""></p>
+<p>15.<code>Paw</code>:接口调试工具</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/2-15.png/blog" alt=""></p>
+<p>16.<code>Prepo</code>:提供一个1024的png,就可以生成所有尺寸的icon,非常好用,还免费</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/2-16.png/blog" alt=""></p>
+<p>17.<code>Reveal</code>:iOS开发调试工具,可以显示所有的视图层级;如果有越狱设备,还可以查看任意一个设备里安装的app的视图结构</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/2-17.png/blog" alt=""></p>
+<p>18.<code>SimPholders</code>:方便的沙盒定位工具,不过目前已经收费了,可以找之前的免费版本</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/2-18.png/blog" alt=""></p>
+<p>19.<code>Sip</code>:取色工具,比系统自带的强大,可以自动生成代码,有历史列表的支持</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/2-19.png/blog" alt=""></p>
+<p>20.<code>Sketch</code>:设计类软件,但是开发用的也不少,画一些简单的原型图什么的,非常方便</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/2-20.png/blog" alt=""></p>
+<p>21.<code>SnippetsLab</code>:可以保存你的代码块,支持云同步</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/2-21.png/blog" alt=""></p>
+<p>22.<code>Spark Inspector</code>:和Reveal一样,但是可以自动刷新,非常方便,但是目前好像是不支持真机调试</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/2-22.png/blog" alt=""></p>
+<p>23.<code>sqlitbrowser</code>:免费的sqlite数据库管理工具</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/2-23.png/blog" alt=""></p>
+<p>24.<code>TextWrangler</code>:又一个强大的文本编辑器,免费</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/2-24.png/blog" alt=""></p>
+<p>25.<code>还有一些功能强大,但是用起来比较危险的软件,就不介绍了</code></p>
+<h3 id="有这么几个网站可以关注下"><a href="#有这么几个网站可以关注下" class="headerlink" title="有这么几个网站可以关注下:"></a>有这么几个网站可以关注下:</h3><p>1.<a href="https://bundlehunt.com" target="_blank" rel="external">https://bundlehunt.com</a><br><code>经常会有software-bundle 出售,一般都是$19.99,或者$21.99,老牌软件厂商喜欢参加这个活动,降价幅度很大</code><br>2.<a href="http://free.apprcn.com/" target="_blank" rel="external">反斗限免</a><br><code>Android, iOS, Windows, BLACKBERRY 10平台的限免软件都有, 不过一般限免都有时间限制, 可以关注他们的微信公众号和微博,比较方便</code><br>3.<a href="https://stacksocial.com/" target="_blank" rel="external">https://stacksocial.com/</a><br><code>这个网站有时候会有免费的bundle,但是如果订阅了的话,会很烦,因为它经常会给你发邮件,频率比较高....</code><br>4.<a href="http://appshopper.com/" target="_blank" rel="external">http://appshopper.com/</a><br><code>各种App限免,降价等资讯的主要来源</code><br>5.<code>凑够5个</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">购买正版App的几个建议：</span><br><span class="line"></span><br><span class="line">1.尽量选择在 Mac AppStore（简称MAS）上购买,只有 MAS 渠道的可以使用 iCloud 同步!</span><br><span class="line">  而且MAS版本的一般没有授权限制，并且不需要你用记事软件等记录license/key，省却了一堆的麻烦事！ </span><br><span class="line">2.如果软件还在官网等渠道销售，而且版本迭代比 MAS 快很多，最好在其他渠道购买 </span><br><span class="line">3.关注 bundlehunt，反斗限免，appshopper 等网站，购买降价，限免,或者是多个软件的低价bundle</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">后续几篇预告:</span><br><span class="line">1.Xcode plugin</span><br><span class="line">2.Alfred workflow入门</span><br><span class="line">3.Alfred workflow高手进阶</span><br><span class="line">4.开发类书籍推荐</span><br><span class="line"></span><br><span class="line">注:前面的序号和文章发布的顺序无关</span><br></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;strong&gt;非开发类&lt;/strong&gt;&lt;br&gt;1.&lt;code&gt;WeiboX&lt;/code&gt;:Mac上看微博必备&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xt8tf.com1.z0.glb.clouddn.com/1-1.png/blog&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;2.&lt;code&gt;1Password&lt;/code&gt;:同步账户密码,license等的神器,最好买MAS版本,可以用iCloud&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xt8tf.com1.z0.glb.clouddn.com/1-2.png/blog&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;3.&lt;code&gt;Alfred&lt;/code&gt;:Mac上最好用的workflow工具,是个效率工具
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Linus Torva</title>
+    <link href="http://bluelich.com/2016/04/30/Linus-Torva/"/>
+    <id>http://bluelich.com/2016/04/30/Linus-Torva/</id>
+    <published>2016-04-30T15:55:09.000Z</published>
+    <updated>2016-07-23T16:14:29.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="转载-译-Linux25-周年：专访-Linux-之父"><a href="#转载-译-Linux25-周年：专访-Linux-之父" class="headerlink" title="[转载(译)]Linux25 周年：专访 Linux 之父"></a>[转载(译)]Linux25 周年：专访 Linux 之父</h2><p><a href="http://spectrum.ieee.org/computing/software/linux-at-25-qa-with-linus-torvalds" target="_blank" rel="external">原文(英文)</a><br><a href="http://tech2ipo.com/10028810" target="_blank" rel="external">中文</a></p>
+<p>1991年，22岁的Linus Torvalds设计了Linux的系统内核。在Linux系统诞生25周年之际，Linux之父在采访中回忆了这四分之一个世纪以来他和Linux的故事。</p>
+<p><img src="http://7xt8tf.com1.z0.glb.clouddn.com/linus.png/blog" alt=""></p>
+<p>1991 年，22 岁的 Linus Torvalds 一边在芬兰赫尔辛基大学学习计算机，一边设计了 Linux 的系统内核。之后，Linux 迅速发展为一个可以在智能手机、服务器等各种平台上运行的功能全面的开源操作系统。在 Linux 系统诞生 25 周年之际，Linux 之父 Linus Torvalds 在采访中回忆了这四分之一个世纪以来他和 Linux 的故事。<a id="more"></a></p>
+<h6 id="记者：现在你比二十五年前要有更丰富的编程经验，有什么你希望自己在当年刚开发-Linux-的时候就知道的吗？"><a href="#记者：现在你比二十五年前要有更丰富的编程经验，有什么你希望自己在当年刚开发-Linux-的时候就知道的吗？" class="headerlink" title="记者：现在你比二十五年前要有更丰富的编程经验，有什么你希望自己在当年刚开发 Linux 的时候就知道的吗？"></a>记者：现在你比二十五年前要有更丰富的编程经验，有什么你希望自己在当年刚开发 Linux 的时候就知道的吗？</h6><p>Linus Torvalds：现在想起来，我觉得自己当年真是初生牛犊不怕虎。如果当时我真的知道从头建立一个操作系统的难度，肯定是不会有勇气去做的。这种年少无知也让我从一开始就没有按照前人的老路编程编写内核。<br>我既不知道自己想要的系统应该怎么做，也不知道其他的操作系统是怎么完成的。所以我会认真考虑和接受其他人提出的好建议。这样的开始让 Linux 成为了开源系统。用户们不需要全盘接受任何一个版本，任何人都可以按照自己的想法改写出自己的版本来。我觉得这种开源的方式让创造出一个好系统更容易，也鼓励了很多编程爱好者人参与进来。</p>
+<h6 id="记者：有没有让你现在感到后悔的-Linux-早期技术决策呢？"><a href="#记者：有没有让你现在感到后悔的-Linux-早期技术决策呢？" class="headerlink" title="记者：有没有让你现在感到后悔的 Linux 早期技术决策呢？"></a>记者：有没有让你现在感到后悔的 Linux 早期技术决策呢？</h6><p>Linus Torvalds：糟糕的决策都是可以改的。那些因为决策错误走了弯路所浪费的时间和精力会让人很烦躁。不过到最后，往往都可以从错误中吸取经验，所以一切都是值得的。我宁可迅速决策，哪怕做错了也比纠结太久要好。<br>在 2001 年左右 Linux 的虚拟内存子系统出了问题时，大家关于未来的方向争论不休，而且内存配置也出了问题。但是现在回过头看，虽然过程很痛苦，但是这些问题并不能毁灭 Linux。这值得我们骄傲。</p>
+<h6 id="记者：Linux-在迅速发展的过程中，让你印象比较深的转变是哪几次？"><a href="#记者：Linux-在迅速发展的过程中，让你印象比较深的转变是哪几次？" class="headerlink" title="记者：Linux 在迅速发展的过程中，让你印象比较深的转变是哪几次？"></a>记者：Linux 在迅速发展的过程中，让你印象比较深的转变是哪几次？</h6><p>Linus Torvalds：两个转变过渡让我印象最深刻。第一次是很早在 1992 的时候，当其他热心的用户开始把他们完成的补丁发给我时，我已经独立开发了 6 个月，我还不太习惯用。所以我会仔细地检查他们想修复的是哪个问题，然后自己再写一遍。有时候跟他们写得非常像，也有时候会有大不相同。<br>再然后，我开始信任一些用户，直接应用他们的补丁。而不是什么都自己重写一遍。只要我有时间，还是会经常修改他们的补丁。那段时间我练就了一身迅速读补丁然后修改的功夫，感觉自己闭眼都能完成。<br>之后 Linux 就这样运行了很久。习惯了这样的模式，第二次改变就困难了很多。是在 2000 年前后，当时 Linux 已经有了很多商业应用，而且用户量也越来越大。大家都开始抱怨我的工作速度已经在影响 Linux 的效率。但是那时也合适的工具来管理开发资源。<br>所以我们引进了 BItKeeper 作为源代码的维护工具。Bitkeeper 允许真正的分布式开发，每个人都拥有自己的主副本。在当时成倍提高了内核的开发效率，并且让我意识到程序员们可以在一个分布式的开发模型中一起工作，而我不应该是唯一的同步点。<br>后来 2005 年我开始以分布式源控制管理的思想着手开发 Git，为了作为一种过渡方案来替代 BitKeeper。虽然让开发人员认可 Git 花了不少功夫，但是 Git 作为一个开放源码的版本控制软件获得了巨大的成功。<br><img src="http://upload-images.jianshu.io/upload_images/139624-e4cce1e0bca753ab?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h6 id="记者：你怎么看-Linux-并没有成为个人电脑的主流操作系统呢"><a href="#记者：你怎么看-Linux-并没有成为个人电脑的主流操作系统呢" class="headerlink" title="记者：你怎么看 Linux 并没有成为个人电脑的主流操作系统呢?"></a>记者：你怎么看 Linux 并没有成为个人电脑的主流操作系统呢?</h6><p>Linus Torvalds：在这方面，Linux 还需要继续努力。个人电脑是用户非常私人化的。为什么个人电脑使用 Linux 系统的用户不够多呢？我觉得用户惯性是很重要的原因之一。有了电脑出厂时预置的操作系统，大多数人不会轻易重装自己电脑的操作系统。现在，比如 Chromebooks（谷歌上网，Linus 本人多次称赞）上安装 Linux 操作系统就不错，虽然功能有限。<br>不过，对于用户而言同样私密同样重要的智能手机方面，多谢基于 Linux 内核的 Android，Linux 应用量还比较不错。</p>
+<h6 id="记者：Linux-最让你惊讶的地方是什么呢？"><a href="#记者：Linux-最让你惊讶的地方是什么呢？" class="headerlink" title="记者：Linux 最让你惊讶的地方是什么呢？"></a>记者：Linux 最让你惊讶的地方是什么呢？</h6><p>现在很少会惊讶的感觉了。毕竟 Linux 已经成为很多新硬件专业的设备或一些新的网络基础设施或什么的的默认开发环境。会让我惊讶的往往是人们又赋予了 Linux 一些新的应用领域，比如在我还认为 Linux 只能作为工作站或者服务器的操作系统时，又有一些厂商选择 Linux 作为冰箱或电视（比如 TiVo）的操作程序，让我吃了一惊。</p>
+<h6 id="记者：你认为-Linux-目前面临的最大挑战是什么呢？"><a href="#记者：你认为-Linux-目前面临的最大挑战是什么呢？" class="headerlink" title="记者：你认为 Linux 目前面临的最大挑战是什么呢？"></a>记者：你认为 Linux 目前面临的最大挑战是什么呢？</h6><p>Linus Torvalds：用户经常担心 Linux 的系统内核会变得越来越复杂，从而变得难以理解，一旦有错误也难以修复。不过实际上现在 Linux 内核运转的非常好。另一个我们面临的持续挑战就是很多运载着 Linux 系统的电子设备不断更新后的适配问题。不过现在很多厂商会帮助我们进行调整，已经比之前好很多了。很多开源项目一定很嫉妒我们所拥有的资源。</p>
+<h6 id="记者：最近的科技的发展方向上，你最感兴趣的是什么？"><a href="#记者：最近的科技的发展方向上，你最感兴趣的是什么？" class="headerlink" title="记者：最近的科技的发展方向上，你最感兴趣的是什么？"></a>记者：最近的科技的发展方向上，你最感兴趣的是什么？</h6><p>Linus Torvalds：我一直对核心硬件很感兴趣，尤其是 CPU。这是我开始独立开发操作系统的原因。我会很高兴看到新的硬件出现。当然，大多数时间是在现有的硬件改动很小，但技术的发展就应该是这样一小步一小步进行的。我会一直关注相关领域的发展。<br>虽然我自己没有从事相关领域的工作，但我也非常感兴趣人工智能的发展。人工智能一直被认为是即将实现，但是一直没有真的实现的东西。不过最近有迹象表明人工智能的实现指日可待，我也跟大家一样很期待。人工智能的特点在于可以学习，不再需人类编程进行控制。但是我认为这也是为什么他们永远没法代替传统的电脑编程。人类的确需要聪明的机器，但是人类也需要会乖乖听话做事的机器。</p>
+<h6 id="记者：你觉得-Linux-在-50-周年的时候还会一如现在一样流行吗？"><a href="#记者：你觉得-Linux-在-50-周年的时候还会一如现在一样流行吗？" class="headerlink" title="记者：你觉得 Linux 在 50 周年的时候还会一如现在一样流行吗？"></a>记者：你觉得 Linux 在 50 周年的时候还会一如现在一样流行吗？</h6><p>Linus Torvalds：把去预测 Linux 的未来会是什么样的问题交给评论家们吧，我更愿意做一个脚踏实地的工程师，每天尽全力专注于 Linux 的每一个小问题和小决策。</p>
+<p>本文由 TECH2IPO / 创见 二两白 编译，译文由创见首发，转载请注明<a href="http://tech2ipo.com/10028810" target="_blank" rel="external">出处</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;转载-译-Linux25-周年：专访-Linux-之父&quot;&gt;&lt;a href=&quot;#转载-译-Linux25-周年：专访-Linux-之父&quot; class=&quot;headerlink&quot; title=&quot;[转载(译)]Linux25 周年：专访 Linux 之父&quot;&gt;&lt;/a&gt;[转载(译)]Linux25 周年：专访 Linux 之父&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;http://spectrum.ieee.org/computing/software/linux-at-25-qa-with-linus-torvalds&quot;&gt;原文(英文)&lt;/a&gt;&lt;br&gt;&lt;a href=&quot;http://tech2ipo.com/10028810&quot;&gt;中文&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;1991年，22岁的Linus Torvalds设计了Linux的系统内核。在Linux系统诞生25周年之际，Linux之父在采访中回忆了这四分之一个世纪以来他和Linux的故事。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xt8tf.com1.z0.glb.clouddn.com/linus.png/blog&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;1991 年，22 岁的 Linus Torvalds 一边在芬兰赫尔辛基大学学习计算机，一边设计了 Linux 的系统内核。之后，Linux 迅速发展为一个可以在智能手机、服务器等各种平台上运行的功能全面的开源操作系统。在 Linux 系统诞生 25 周年之际，Linux 之父 Linus Torvalds 在采访中回忆了这四分之一个世纪以来他和 Linux 的故事。
+    
+    </summary>
+    
+    
+      <category term="转载" scheme="http://bluelich.com/tags/%E8%BD%AC%E8%BD%BD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>简单算法实现之《中国剩余定理》</title>
+    <link href="http://bluelich.com/2016/04/24/%E7%AE%80%E5%8D%95%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0%E4%B9%8B%E3%80%8A%E4%B8%AD%E5%9B%BD%E5%89%A9%E4%BD%99%E5%AE%9A%E7%90%86%E3%80%8B/"/>
+    <id>http://bluelich.com/2016/04/24/简单算法实现之《中国剩余定理》/</id>
+    <published>2016-04-24T09:37:00.000Z</published>
+    <updated>2016-06-18T10:54:36.000Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="https://zh.wikipedia.org/wiki/%E4%B8%AD%E5%9B%BD%E5%89%A9%E4%BD%99%E5%AE%9A%E7%90%86" target="_blank" rel="external">中国剩余定理</a><br>这个定理之前没见过，是在<a href="http://www.ruanyifeng.com/blog/2013/06/rsa_algorithm_part_one.html" target="_blank" rel="external">RSA算法原理（一）</a>中提到的，想深入了解的可以去读下。</p>
+<h5 id="故事背景"><a href="#故事背景" class="headerlink" title="故事背景"></a>故事背景</h5><ul>
+<li>韩信点兵</li>
+</ul>
+<blockquote>
+<p>秦朝末年，楚汉相争。一次，韩信将1500名将士与楚王大将李锋交战。苦战一场，楚军不敌，败退回营，汉军也死伤四五百人，于是韩信整顿兵马也返回大本营。当行至一山坡，忽有后军来报，说有楚军骑兵追来。只见远方尘土飞扬，杀声震天。汉军本来已十分疲惫，这时队伍大哗。韩信兵马到坡顶，见来敌不足五百骑，便急速点兵迎敌。他命令士兵3人一排，结果多出2名；接着命令士兵5人一排，结果多出3名；他又命令士兵7人一排，结果又多出2名。韩信马上向将士们宣布：我军有1073名勇士，敌人不足五百，我们居高临下，以众击寡，一定能打败敌人。汉军本来就信服自己的统帅，这一来更相信韩信是“神仙下凡”、“神机妙算”。于是士气大振。一时间旌旗摇动，鼓声喧天，汉军步步进逼，楚军乱作一团。交战不久，楚军大败而逃。</p>
+</blockquote>
+<p>题目就是：将军点兵，三三数余2，五五数余3，七七数余2。问兵几何？<a id="more"></a></p>
+<ul>
+<li>孙子算经</li>
+</ul>
+<blockquote>
+<p>今有物，不知其数，三三数之，剩二，五五数之，剩三，七七数之，剩二，问物几何？<br>答曰：二十三　　<br>术曰：三三数之剩二，置一百四十，五五数之剩三，置六十三，七七数之剩二，置三十，并之，得二百三十三，以二百一十减之，即得。凡三三数之剩一，则置七十，五五数之剩一，则置二十一，七七数之剩一，则置十五，即得。</p>
+</blockquote>
+<p>《孙子算经》里给出了解决办法</p>
+<h6 id="步骤一"><a href="#步骤一" class="headerlink" title="步骤一"></a>步骤一</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">除3余2 -&gt; 取140</span><br><span class="line">除5余3 -&gt; 取63</span><br><span class="line">除7余2 -&gt; 取30</span><br></pre></td></tr></table></figure>
+<h6 id="步骤二："><a href="#步骤二：" class="headerlink" title="步骤二："></a>步骤二：</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">对上面取到的数求和</span><br><span class="line">140 + 63 + 30 = 233</span><br></pre></td></tr></table></figure>
+<h6 id="步骤三"><a href="#步骤三" class="headerlink" title="步骤三"></a>步骤三</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">用上面求出的结果减去210，就是结果</span><br><span class="line">233 - 210 = 23</span><br><span class="line">结果也就是23了</span><br></pre></td></tr></table></figure>
+<p>不过那140，63，30，还有210是怎么来的呢？这就涉及到中国剩余定理的算法原理了。</p>
+<h3 id="中国剩余定理原理"><a href="#中国剩余定理原理" class="headerlink" title="中国剩余定理原理"></a>中国剩余定理原理</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#题目：</span><br><span class="line">设要求的数为x，每个除法的结果分别为k1，k2，k3，那么就有：</span><br><span class="line">[1]  x / 3 = k1 + 2</span><br><span class="line">[2]  x / 5 = k2 + 3</span><br><span class="line">[3]  x / 7 = k3 + 2</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.对步骤一中的式子1求解过程为：取式子2和式子3中除数（5和7）的最小公倍数LCM（35），</span><br><span class="line">然后把这个LCM作为x带入式子1。如果LCM不能适应式子1，就对LCM再加上一个LCM，</span><br><span class="line">然后带入式子1中......直到满足式子1为止。</span><br><span class="line"></span><br><span class="line">按照这个求解过程，分别对3个式子求解，取到的结果为：35，63，30</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">2.把上面求到的结果求和</span><br><span class="line"></span><br><span class="line">35 + 63 + 30 = 128</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">3.这里对3个式子的除数取最小公倍数</span><br><span class="line"></span><br><span class="line">3，5，7的最小公倍数为105</span><br><span class="line">然后用上面的结果减去这个最小公倍数，就是结果了</span><br><span class="line">128 - 105 = 23</span><br></pre></td></tr></table></figure>
+<p><code>这里估计有人要问了：这个35也不是140，而且105也不等于210啊？！
+这个不用纠结，这个跟古代数学的发展史有关嘛！
+当然，这是我瞎说的，想要深挖的可以去研究下相关资料。</code></p>
+<p>-</p>
+<h2 id="下面具体说代码实现"><a href="#下面具体说代码实现" class="headerlink" title="下面具体说代码实现"></a>下面具体说代码实现</h2><p>首先创建个model类，类里面有除数和余数2个属性，然后提供一个遍历构造器，方便使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">@interface CRTModel : NSObject</span><br><span class="line"></span><br><span class="line">@property (assign, nonatomic) NSInteger divider;</span><br><span class="line"></span><br><span class="line">@property (assign, nonatomic) NSInteger remain;</span><br><span class="line"></span><br><span class="line">+(instancetype)modelWithDivider:(NSInteger)divider</span><br><span class="line">                         remain:(NSInteger)remain;</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">@implementation CRTModel</span><br><span class="line"></span><br><span class="line">+(instancetype)modelWithDivider:(NSInteger)divider remain:(NSInteger)remain</span><br><span class="line">&#123;</span><br><span class="line">    CRTModel *model = [[self alloc] init];</span><br><span class="line">    model.divider = divider;</span><br><span class="line">    model.remain = remain;</span><br><span class="line">    return model;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p>还需要用到2个函数，最大公约数GCD和最小公倍数LCM</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">-(NSInteger)gcdOf:(NSInteger)a and:(NSInteger)b</span><br><span class="line">&#123;</span><br><span class="line">    //这里用__block修饰也可以</span><br><span class="line">    static const NSInteger(^GCDRecursionBlock)(NSInteger,NSInteger) </span><br><span class="line">    = ^(NSInteger ra, NSInteger rb)&#123;</span><br><span class="line">        if (!ra || !rb) return MAX(ra, rb);</span><br><span class="line">        return GCDRecursionBlock(rb,ra%rb);</span><br><span class="line">    &#125;;</span><br><span class="line">    return GCDRecursionBlock(a,b);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//最小公倍数</span><br><span class="line">-(NSInteger)lcmOf:(NSInteger)a and:(NSInteger)b</span><br><span class="line">&#123;</span><br><span class="line">    return a * b / [self gcdOf:a and:b]; //最小公倍数等于两数之积除以最大公约数</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后开始实现算法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">0.先创建3个Model，把题目&quot;抄&quot;一遍</span><br><span class="line"></span><br><span class="line">CRTModel *model1 = [CRTModel modelWithDivider:3 remain:2];</span><br><span class="line">CRTModel *model2 = [CRTModel modelWithDivider:5 remain:3];</span><br><span class="line">CRTModel *model3 = [CRTModel modelWithDivider:7 remain:2];</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">1.取到算法中步骤1的结果：</span><br><span class="line"></span><br><span class="line">-(NSInteger)getSubMinNumberOfDivider1:(NSInteger)divider1</span><br><span class="line">                              divider2:(NSInteger)divider2</span><br><span class="line">                           andDivider3:(NSInteger)divider3</span><br><span class="line">                             remainOf3:(NSInteger)remainOf3</span><br><span class="line">&#123;</span><br><span class="line">    NSInteger lcm = [self lcmOf:divider1 and:divider2];</span><br><span class="line">    NSInteger result = lcm;</span><br><span class="line">    while ((result % divider3) != remainOf3) &#123;</span><br><span class="line">        result += lcm;</span><br><span class="line">    &#125;</span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">NSInteger a = [self getSubMinNumberOfDivider1:model1.divider divider2:model2.divider andDivider3:model3.divider remainOf3:model3.remain];</span><br><span class="line">NSInteger b = [self getSubMinNumberOfDivider1:model2.divider divider2:model3.divider andDivider3:model1.divider remainOf3:model1.remain];</span><br><span class="line">NSInteger c = [self getSubMinNumberOfDivider1:model3.divider divider2:model1.divider andDivider3:model2.divider remainOf3:model2.remain];</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">2.求和</span><br><span class="line"></span><br><span class="line">NSInteger sum = a + b + c;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">3.求全部除数的最小公倍数，然后求结果</span><br><span class="line"></span><br><span class="line">//使用&quot;更相减损术&quot;</span><br><span class="line">NSInteger lcmOfAll = </span><br><span class="line">    [self lcmOf:[self lcmOf:model1.divider and:model2.divider] and:model3.divider];</span><br><span class="line">    </span><br><span class="line">//求结果</span><br><span class="line">NSInteger result = sum - lcmOfAll;</span><br><span class="line">NSLog(@&quot;计算结果为：%ld + %ld * k (k为自然数)&quot;,result,lcmOfAll);</span><br></pre></td></tr></table></figure>
+<p>就这么多了。这是我昨晚回顾RSA加密时候看到的，刚好就学习下了，其实想再复习下欧拉函数什么的，都忘光了！ 有时间就搞！！</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;a href=&quot;https://zh.wikipedia.org/wiki/%E4%B8%AD%E5%9B%BD%E5%89%A9%E4%BD%99%E5%AE%9A%E7%90%86&quot;&gt;中国剩余定理&lt;/a&gt;&lt;br&gt;这个定理之前没见过，是在&lt;a href=&quot;http://www.ruanyifeng.com/blog/2013/06/rsa_algorithm_part_one.html&quot;&gt;RSA算法原理（一）&lt;/a&gt;中提到的，想深入了解的可以去读下。&lt;/p&gt;
+&lt;h5 id=&quot;故事背景&quot;&gt;&lt;a href=&quot;#故事背景&quot; class=&quot;headerlink&quot; title=&quot;故事背景&quot;&gt;&lt;/a&gt;故事背景&lt;/h5&gt;&lt;ul&gt;
+&lt;li&gt;韩信点兵&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;秦朝末年，楚汉相争。一次，韩信将1500名将士与楚王大将李锋交战。苦战一场，楚军不敌，败退回营，汉军也死伤四五百人，于是韩信整顿兵马也返回大本营。当行至一山坡，忽有后军来报，说有楚军骑兵追来。只见远方尘土飞扬，杀声震天。汉军本来已十分疲惫，这时队伍大哗。韩信兵马到坡顶，见来敌不足五百骑，便急速点兵迎敌。他命令士兵3人一排，结果多出2名；接着命令士兵5人一排，结果多出3名；他又命令士兵7人一排，结果又多出2名。韩信马上向将士们宣布：我军有1073名勇士，敌人不足五百，我们居高临下，以众击寡，一定能打败敌人。汉军本来就信服自己的统帅，这一来更相信韩信是“神仙下凡”、“神机妙算”。于是士气大振。一时间旌旗摇动，鼓声喧天，汉军步步进逼，楚军乱作一团。交战不久，楚军大败而逃。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;题目就是：将军点兵，三三数余2，五五数余3，七七数余2。问兵几何？
+    
+    </summary>
+    
+    
+      <category term="算法" scheme="http://bluelich.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+</feed>
